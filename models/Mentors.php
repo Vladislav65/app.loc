@@ -5,7 +5,6 @@
 class Mentors{
 
     public static function getMentorById($id){
-
         $connection = Db::getConnection();
 
         $getMentorQuery = mysqli_query($connection, "SELECT * FROM mentors WHERE mentor_id = '$id'");
@@ -15,7 +14,6 @@ class Mentors{
     }   
 
     public static function getRecommendedMentors($idS){
-
         $connection = Db::getConnection();
 
         $topMentors = [];
@@ -29,7 +27,6 @@ class Mentors{
     }
     
     public static function getMentorsList(){
-
         $connection = Db::getConnection();
 
         $mentorsList = [];
@@ -44,7 +41,6 @@ class Mentors{
 
     // Функция определения подходящих менторов
     public static function mentorTest($mentorTestArray){
-
         $connection = Db::getConnection();
         $idS = [];
 
@@ -125,7 +121,6 @@ class Mentors{
     }
 
     public static function checkExperience($expBuf, $expDbBuf){
-
         $flag = false;
         $difference = $expDbBuf - $expBuf;
 
@@ -137,7 +132,6 @@ class Mentors{
     }
 
     public static function checkFormat($formatBuf, $formatDbBuf){
-
         $flag = false;
         $formatDb = explode("-", $formatDbBuf);
         $formatCommon = array_intersect($formatBuf, $formatDb);
@@ -150,7 +144,6 @@ class Mentors{
     }
 
     public static function checkDays($daysBuf, $daysDbBuf){
-
         $flag = false;
         $daysDb = explode(",", $daysDbBuf);
         $daysCommon = array_intersect($daysBuf, $daysDb);
@@ -164,7 +157,6 @@ class Mentors{
 
     // проверяем возраст в диапазоне
     public static function checkAge($ageBuf, $ageDb){
-
         $flag = false;
 
         if($ageBuf != "50 и старше"){
@@ -185,7 +177,6 @@ class Mentors{
     }
 
     public static function checkRating($rateBuf, $rateDbBuf){
-
         $flag = false;
         $difference = $rateDbBuf - $rateBuf;
 
@@ -261,7 +252,6 @@ class Mentors{
     }
 
     public static function sendInvitation($groupId, $studentId){
-
         $connection = Db::getConnection();
         $mentorId = $_SESSION['mentor']['mentor_id'];
 
@@ -289,5 +279,35 @@ class Mentors{
 
             return $result;
         } 
+    }
+
+    public static function insertCourseToGroup($groupId){
+        $connection = Db::getConnection();
+        $getLastCourseIdQuery = mysqli_query($connection,
+        "SELECT course_id FROM courses ORDER BY course_id desc LIMIT 1");
+
+        $lastCourseAssoc = mysqli_fetch_assoc($getLastCourseIdQuery);
+
+        $getGroupsListQuery = mysqli_query($connection, 
+        "SELECT courses FROM groups WHERE id = '$groupId'");
+
+        $coursesList = mysqli_fetch_assoc($getGroupsListQuery);
+
+        if($coursesList['courses'] == null){
+            $insertCourseQuery = mysqli_query($connection,
+            "UPDATE groups SET courses = '{$lastCourseAssoc['course_id']}' WHERE id = '$groupId'");
+        }else{
+            $insertCourseQuery = mysqli_query($connection,
+            "SELECT courses FROM groups WHERE id = '$groupId'");
+
+            $coursesAssoc = mysqli_fetch_assoc($insertCourseQuery);
+            $courses = $coursesAssoc['courses'];
+
+            $courses = $courses . "," . $lastCourseAssoc['course_id'];
+            echo $courses;
+        }
+        
+
+        //return ;
     }
 }

@@ -47,7 +47,7 @@ class AdminController{
 
         require_once SITE_PATH . DS . "views" . DS . "courseAdd.php";
 
-        return true;
+        return $courseAddResult;
     }
 
     public function actionUserControl(){

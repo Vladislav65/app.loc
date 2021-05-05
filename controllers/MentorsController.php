@@ -1,11 +1,11 @@
 <?php
 
 include_once SITE_PATH . DS . "models" . DS . "Mentors.php";
+include_once SITE_PATH . DS . "controllers" . DS . "AdminController.php";
 
 /* Контроллер раздела "Менторы" */
 
 class MentorsController{
-
     public function actionIndex(){
 
         $mentorsList = [];
@@ -169,6 +169,18 @@ class MentorsController{
         $invitationResult = Mentors::sendInvitation($groupId, $studentId);
 
         require_once SITE_PATH . DS . "views" . DS . "inviteStudents.php";
+
+        return true;
+    }
+
+    public static function actionCourseAdd($groupId){
+        $newCourse = new AdminController();
+        $flag = $newCourse->actionCourseAdd();
+        if($flag == 'Курс был успешно добавлен'){
+            Mentors::insertCourseToGroup($groupId);
+        }
+
+        /*require_once SITE_PATH . DS . "views" . DS . "courseAdd.php";*/
 
         return true;
     }

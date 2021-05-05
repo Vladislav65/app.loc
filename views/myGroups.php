@@ -23,11 +23,32 @@
                             foreach($groups as $key => $value){
                             ?>
                             <div class="group">
-                                <p><?php echo $value['name']; ?></p> <br>
-                                <p><?php echo $value['speciality']; ?></p> <br>
-                                <p><?php echo $value['add_speciality']; ?></p> <br>
-                                <p><?php echo $value['status']; ?></p> <br>
-                                <p><a href="inviteStudents<?php echo $value["id"] ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Пригласить студентов</p> <br>
+                                <p>Название: <?php echo $value['name']; ?></p> 
+                                <?php 
+                                        if($value['speciality'] == 'economics'){
+                                    ?>
+                                            <p>Дисциплина: Экономика</p>
+                                    <?php
+                                        }else{
+                                    ?>
+                                            <p>Дисциплина: Логистика</p>
+                                    <?php
+                                        }
+                                    ?>
+                                <p>Специализация: <?php echo $value['add_speciality']; ?></p>
+                                <?php 
+                                        if($value['status'] == 'opened'){
+                                    ?>
+                                            <p>Доступ: Открытая</p>
+                                    <?php
+                                        }else{
+                                    ?>
+                                            <p>Доступ: Закрытая</p>
+                                    <?php
+                                        }
+                                ?>
+                                <p><a href="inviteStudents<?php echo $value["id"] ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Пригласить студентов</p>
+                                <p><a href="mentorCourseAdd<?php echo $value["id"] ?>"><img class="topicPlusIcon" src="templates/images/redPlusIcon.jpg" /></a> Добавить курс</p> <br>
                             </div>
                             <?php
                             }

@@ -2,9 +2,9 @@
 
 /* Основной файл проекта, который принимает все запросы пользователя (точка входа) */
 
-//error_reporting (E_ALL);
-ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
+error_reporting (E_ALL);
+/*ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);*/
 define("FILES_ACCESS", true);
 
 header("Content-Type:text/html; charset=utf-8");

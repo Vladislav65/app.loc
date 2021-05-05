@@ -11,7 +11,10 @@
 <body>
     <?php if(isset($_SESSION['admin'])){ ?>
     <?php include SITE_PATH . DS . "components" . DS . "adminHeader.php" ?>
+    <?php }else if(isset($_SESSION['mentor'])){ ?>
+    <?php include SITE_PATH . DS . "components" . DS . "mentorHeader.php"; } ?>
 
+    <?php if(isset($_SESSION['admin']) || isset($_SESSION['mentor'])){ ?>
     <div class="addCourseMain">
         <h4 style="text-align: center">Добавление нового курса</h4>
         <div class="courseAddSection d-flex justify-content-center"> 
@@ -39,7 +42,7 @@
     <?php include SITE_PATH . DS . "components" . DS . "footer.php" ?>    
     <?php
     }else{
-    echo "Нет доступа к данной странице";
+        echo "Нет доступа к данной странице";
     }
     ?>
 </body>

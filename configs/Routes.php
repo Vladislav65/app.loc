@@ -25,6 +25,7 @@ return array(
     "delStudent([0-9]+)" => "admin/deleteStudent/$1",
     "delMentor([0-9]+)" => "admin/deleteMentor/$1",
     "courseadd" => "admin/courseAdd",
+    "mentorCourseAdd" => "mentors/courseAdd/$1",
     "coursecontrol" => "admin/coursesControl",
     "usercontrol" => "admin/userControl",
     "courseAdmin([0-9]+)" => "admin/courseAdmin/$1",

@@ -76,7 +76,7 @@ class Admin{
         }
         
         if($flag == true){
-            $courseAddQuery = mysqli_query($connection, "INSERT INTO courses (
+            /*$courseAddQuery = mysqli_query($connection, "INSERT INTO courses (
                                                                     course_img,
                                                                     course_name,
                                                                     course_category,
@@ -88,7 +88,7 @@ class Admin{
                                                                     '$courseCategory',
                                                                     '$courseLength',
                                                                     '$courseDescr'
-                                                                    )");
+                                                                    )");*/
             $courseAddResult = "Курс был успешно добавлен";
             /**/
         }else{
