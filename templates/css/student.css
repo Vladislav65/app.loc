@@ -1,0 +1,30 @@
+.mainAcc{
+    display: flex;
+}
+
+.sidebar{
+    border: 3px solid blue;
+    width: 250px;
+    height: calc(100vh - 120px - 80px);
+}
+
+.greetingBlock{
+    
+}
+
+.greeting{
+    text-align: center;
+}
+
+.avatar{
+    width: 250px;
+    height: 200px;
+}
+
+.headerGreeting{
+    display: inline-flex;
+}
+
+.groupBlock{
+    border: 3px solid red;
+}

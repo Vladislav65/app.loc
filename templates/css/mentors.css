@@ -1,0 +1,25 @@
+.mentorsCol h3{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.mentorBlock{
+    border: 3px solid red;
+    margin-bottom: 20px;
+}
+
+.mentorImg{
+    width: 220px;
+    height: 170px;
+    margin-left: 0px;
+}
+
+.mentorHeader{
+    display: inline-flex;
+}
+
+.student_img{
+    width: 200px;
+    height: 150px;
+}

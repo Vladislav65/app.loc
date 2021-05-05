@@ -1,0 +1,13 @@
+.mentorAvatar{
+    width: 280px;
+    height: 160px;
+}
+
+.bestMentor{
+    text-align: center;
+    /*border: 3px solid blue;*/
+}
+
+.addMentor{
+    text-align: center;
+}

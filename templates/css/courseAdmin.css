@@ -1,0 +1,8 @@
+.topicPlusIcon, .deleteIcon{
+    width: 30px;
+    height: 30px;
+}
+
+.group{
+    border: 3px solid red;
+}

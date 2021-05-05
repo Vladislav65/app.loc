@@ -1,0 +1,26 @@
+.courseMaterials{
+    text-align: center;
+}
+
+.courseTopics{
+    display: inline-flex;
+}
+
+.courseTopic{
+    width: 100%;
+    border: 3px solid blue;
+}
+
+.courseTests{
+    display: inline-flex;
+    width: 100%;
+}
+
+.courseTest{
+    width: 50%;
+    border: 3px solid red;
+}
+
+footer{
+    margin-top: 2%;
+}

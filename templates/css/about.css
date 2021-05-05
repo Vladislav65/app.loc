@@ -1,0 +1,24 @@
+.aboutTitle{
+    text-align: center;
+}
+
+.content{
+    font-size: 20px;
+}
+
+.regScreen{
+    width: 350px;
+    height: 350px;
+    margin-bottom: 2px;
+}
+
+.authScreen{
+    width: 400px;
+    height: 300px;
+    margin-left: 700px;
+}
+
+.studentScreen{
+    width: 500px;
+    height: 300px;
+}

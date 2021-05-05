@@ -1,0 +1,17 @@
+.deleteIcon, .moderIcon, .avatar{
+    width: 60px;
+    height: 60px;
+}
+
+.userPlusIcon{
+    width: 30px;
+    height: 30px;
+}
+
+.mentorsTableBlock{
+    margin-bottom: 50px;
+}
+
+.invitation{
+    border: 3px solid firebrick;
+}

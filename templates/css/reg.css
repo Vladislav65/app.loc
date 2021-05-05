@@ -1,0 +1,45 @@
+.regForm input{
+    margin-bottom: 10px;
+}
+
+.regSection p, h3{
+    text-align: center;
+}
+
+.regDescr{
+    margin-top: 3%;
+    color: black;
+    text-shadow: 1px 1px 2px, 0 0 1em red;
+    font-size: 17px;
+}
+
+.inputs{
+    width: 300px;
+	font-size: 13px;
+	padding: 6px 0 4px 10px;
+	border: 1px solid #cecece;
+	background: #F6F6f6;
+	border-radius: 8px;
+}
+
+.btn{
+    -webkit-writing-mode: horizontal-tb !important;
+    -webkit-appearance: button;
+    border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+    border-style: solid;
+    /*border-width: 1px;*/
+    padding: 10px 10px 10px;
+    text-rendering: auto;
+    color: initial;
+    display: inline-block;
+    text-align: start;
+    /*margin: 0em;*/
+    font: 400 11px system-ui;
+    margin-left: 80px;
+}
+
+label{
+    color: black;
+    text-shadow: 1px 1px 2px, 0 0 1em red;
+    font-size: 19px;
+}

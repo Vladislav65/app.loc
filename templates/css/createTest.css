@@ -1,0 +1,11 @@
+.questions{
+    display: inline-flex;
+}
+
+.question1, .question2{
+    margin-right: 50px;
+}
+
+.test{
+    text-align: center;
+}
