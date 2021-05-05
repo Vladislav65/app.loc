@@ -197,16 +197,23 @@ class Mentors{
     }
 
     public static function createGroup($groupInfo){
-
         $connection = Db::getConnection();
         $ownerId = $_SESSION['mentor']['mentor_id'];
-        
+
+        $mentorNameQuery = mysqli_query($connection,
+        "SELECT mentor_first_name, mentor_surname FROM mentors WHERE mentor_id = '$ownerId'");
+        $mentorInfo = mysqli_fetch_assoc($mentorNameQuery);
+
         $groupAddQuery = mysqli_query($connection, "INSERT INTO groups (owner,
+                                                                        owner_name,
+                                                                        owner_surname,
                                                                         name,
                                                                         speciality,
                                                                         add_speciality,
                                                                         status)
                                                     VALUES ('$ownerId',
+                                                            '{$mentorInfo['mentor_first_name']}',
+                                                            '{$mentorInfo['mentor_surname']}',
                                                             '{$groupInfo['groupName']}',
                                                             '{$groupInfo['speciality']}',
                                                             '{$groupInfo['add_speciality']}',
@@ -216,7 +223,6 @@ class Mentors{
     }  
 
     public static function getGroups(){
-        
         $connection = Db::getConnection();
         $ownerId = $_SESSION['mentor']['mentor_id'];
         $groups = [];

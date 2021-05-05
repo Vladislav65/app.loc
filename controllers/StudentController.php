@@ -155,10 +155,6 @@ class StudentController{
 
         $fullGroups = Student::getGroups($studentId);
 
-        echo "<pre>";
-        var_dump($fullGroups);
-        echo "</pre>";
-
         require_once SITE_PATH . DS . "views" . DS . "groups.php";
 
         return true;

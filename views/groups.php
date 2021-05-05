@@ -23,6 +23,7 @@
                             ?>
                                 <div class="groupBlock">
                                     <p>Название: <?php echo $group['name'] ?></p>
+                                    <p>Руководитель: <a href=mentors<?php echo (int) $group['owner']; ?>><?php echo $group['owner_name'] . " " . $group['owner_surname'] ?></a></p>
                                     <p>Дисциплина: <?php echo $group['speciality'] ?></p>
                                     <p>Специализация: <?php echo $group['add_speciality'] ?></p>
                                     <?php 
