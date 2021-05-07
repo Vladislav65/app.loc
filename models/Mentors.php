@@ -226,6 +226,14 @@ class Mentors{
         }
 
         if(!empty($groups)){
+            foreach($groups as &$group){
+                if($group['students'] == null){
+                    $group['students_num'] = 0;
+                }else{
+                    $group['students_num'] = substr_count($group['students'], ',') + 1;
+                }
+            }
+    
             return $groups;
         }else{
             return false;
@@ -297,17 +305,58 @@ class Mentors{
             $insertCourseQuery = mysqli_query($connection,
             "UPDATE groups SET courses = '{$lastCourseAssoc['course_id']}' WHERE id = '$groupId'");
         }else{
-            $insertCourseQuery = mysqli_query($connection,
+            $selectCourseQuery = mysqli_query($connection,
             "SELECT courses FROM groups WHERE id = '$groupId'");
 
             $coursesAssoc = mysqli_fetch_assoc($insertCourseQuery);
             $courses = $coursesAssoc['courses'];
 
             $courses = $courses . "," . $lastCourseAssoc['course_id'];
-            echo $courses;
+
+            $insertCourseQuery = mysqli_query($connection,
+            "UPDATE groups SET courses = '$courses' WHERE id = '$groupId'");
         }
         
-
         //return ;
+    }
+
+    public static function getGroupById($id){
+        $connection = Db::getConnection();
+        $groupGetQuery = mysqli_query($connection,
+        "SELECT * FROM groups WHERE id = '$id'");
+
+        $group = mysqli_fetch_assoc($groupGetQuery);
+
+        if(!($group['courses'] == null)){
+            $courseIds = explode(',', $group['courses']);
+            $group['courses_num'] = sizeof($courseIds);
+
+            for($i = 0; $i < sizeof($courseIds); $i++){
+                $coursesGetQuery = mysqli_query($connection,
+                    "SELECT course_img, course_name, course_category, course_descr FROM courses
+                    WHERE course_id = '{$courseIds[$i]}'");
+
+                $group['coursesList'][] = mysqli_fetch_assoc($coursesGetQuery);
+            }
+        }else{
+            $group['courses_num'] = 0;
+        }
+
+        if(!($group['students'] == null)){
+            $studentIds = explode(',', $group['students']);
+            $group['students_num'] = sizeof($studentIds);
+
+            for($i = 0; $i < sizeof($studentIds); $i++){
+                $studentsGetQuery = mysqli_query($connection,
+                    "SELECT student_first_name, student_surname, student_email, student_avatar, student_login FROM students
+                    WHERE student_id = '{$studentIds[$i]}'");
+
+                $group['studentsList'][] = mysqli_fetch_assoc($studentsGetQuery);
+            }
+        }else{
+            $group['students_num'] = 0;
+        }
+
+        return $group;
     }
 }

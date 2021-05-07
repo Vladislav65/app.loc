@@ -36,6 +36,7 @@
                                         }
                                     ?>
                                 <p>Специализация: <?php echo $value['add_speciality']; ?></p>
+                                <p>Количество студентов: <?php echo $value['students_num']; ?></p>
                                 <?php 
                                         if($value['status'] == 'opened'){
                                     ?>
@@ -49,6 +50,7 @@
                                 ?>
                                 <p><a href="inviteStudents<?php echo $value["id"] ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Пригласить студентов</p>
                                 <p><a href="mentorCourseAdd<?php echo $value["id"] ?>"><img class="topicPlusIcon" src="templates/images/redPlusIcon.jpg" /></a> Добавить курс</p> <br>
+                                <p><a href="manageGroup<?php echo $value['id'] ?>">Управление группой</a></p>
                             </div>
                             <?php
                             }

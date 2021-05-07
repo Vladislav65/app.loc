@@ -138,6 +138,7 @@ class MentorsController{
     public static function actionViewGroups(){
 
         $groups = Mentors::getGroups();
+
         /*echo "<pre>";
         var_dump($groups);
         echo "</pre>";*/
@@ -181,6 +182,19 @@ class MentorsController{
         }
 
         /*require_once SITE_PATH . DS . "views" . DS . "courseAdd.php";*/
+
+        return true;
+    }
+
+    public function actionManageGroup($id){
+        
+        $group = Mentors::getGroupById($id);
+
+        echo "<pre>";
+        var_dump($group);
+        echo "</pre>";
+
+        require_once SITE_PATH . DS . "views" . DS . "manageGroup.php";
 
         return true;
     }

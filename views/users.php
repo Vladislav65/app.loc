@@ -35,7 +35,6 @@
                         echo "<td>" . $student["student_email"] . "</td>";
                         echo "<td><img class=\"avatar\" src=".$student["student_avatar"]."></td>";
                         echo "<td>" . $student["student_login"] . "</td>";
-                        /* Сделать удаление через жс */ 
                         echo "<td> <a href=\"delStudent".$student["student_id"]."\"><img class=\"deleteIcon\" src=\"templates/images/deleteIcon.jpg\" /></a></td>";
                     echo "</tr>";
                     }
