@@ -220,7 +220,7 @@ class MentorsController{
         if(isset($_POST['updateCourse'])){
             $updateData = $_POST;
 
-            
+            Mentors::updateCourse($updateData, $courseId, $oldData['course_img']);
         }
         
         require_once SITE_PATH . DS . "views" . DS . "updateCourse.php";

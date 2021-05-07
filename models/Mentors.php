@@ -435,4 +435,23 @@ class Mentors{
 
         return $courseData;
     }
+
+    public static function updateCourse($updateData, $courseId, $courseImg){
+        $connection = Db::getConnection();
+        if($_FILES['courseImage']['tmp_name'] != ''){
+            unlink($courseImg);
+            $courseImg = 'templates/images/' . $_FILES['courseImage']['name'];
+            move_uploaded_file($_FILES['courseImage']['tmp_name'], $courseImg);
+        }
+        /*echo "<pre>";
+        var_dump($updateData);
+        echo "</pre>";*/
+        echo $courseImg;
+        $updateCourseQuery = mysqli_query($connection,
+        "UPDATE courses SET course_name = '{$updateData['courseName']}',
+                            course_category = '{$updateData['courseCategory']}',
+                            course_descr = '{$updateData['descr']}',
+                            course_img = '$courseImg',
+                            course_length = {$updateData['length']} WHERE course_id = '$courseId'");
+    }
 }
