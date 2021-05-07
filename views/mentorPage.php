@@ -24,7 +24,17 @@
                             <p>Ваш логин: <?php echo $_SESSION['mentor']['mentor_login'] ?></p> <br>
                             <p>Ваш пароль: <?php echo "*****"//$_SESSION['mentor']['mentor_password'] ?></p> <br>
                             <p>Ваш e-mail: <?php echo $_SESSION['mentor']['mentor_email'] ?></p> <br>
-                            <p>Ваша специальность: <?php echo $_SESSION['mentor']['speciality'] ?></p> <br>
+                            <?php 
+                                        if($_SESSION['mentor']['speciality'] == 'economics'){
+                                    ?>
+                                            <p>Ваша дисциплина: Экономика</p> <br>
+                                    <?php
+                                        }else{
+                                    ?>
+                                            <p>Ваша дисциплина: Логистика</p> <br>
+                                    <?php
+                                        }
+                                    ?>
                             <p>Ваша дополнительная специальность: <?php echo $_SESSION['mentor']['add_speciality'] ?></p> <br>
                             <p>Ваш опыт преподавания: <?php echo $_SESSION['mentor']['experience'] ?></p> <br>
                             <p>Текущий рейтинг: <?php echo $_SESSION['mentor']['rating'] ?></p> <br>

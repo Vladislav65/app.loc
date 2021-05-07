@@ -4,7 +4,6 @@
 class Db{
 
     public static function getConnection(){
-
         $paramsPath = SITE_PATH . DS . "configs". DS . "DbParams.php";
         $params = include($paramsPath);
 
