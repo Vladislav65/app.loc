@@ -4,7 +4,7 @@
 
 return array(
     "hostname" => "localhost",
-    "username" => "mysql",
-    "password" => "mysql",
+    "username" => "mysql", // root????????
+    "password" => "mysql", // root????????
     "dbName" => "app"
 );

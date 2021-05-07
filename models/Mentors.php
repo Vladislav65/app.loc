@@ -195,7 +195,7 @@ class Mentors{
         "SELECT mentor_first_name, mentor_surname FROM mentors WHERE mentor_id = '$ownerId'");
         $mentorInfo = mysqli_fetch_assoc($mentorNameQuery);
 
-        /*$groupAddQuery = mysqli_query($connection, "INSERT INTO groups (owner,
+        $groupAddQuery = mysqli_query($connection, "INSERT INTO groups (owner,
                                                                         owner_name,
                                                                         owner_surname,
                                                                         name,
@@ -208,7 +208,7 @@ class Mentors{
                                                             '{$groupInfo['groupName']}',
                                                             '{$groupInfo['speciality']}',
                                                             '{$groupInfo['add_speciality']}',
-                                                            '{$groupInfo['status']}')");*/
+                                                            '{$groupInfo['status']}')");
 
         $increaseRateQuery = mysqli_query($connection, 
             "SELECT rating FROM mentors WHERE mentor_id = '$ownerId'");
@@ -284,6 +284,7 @@ class Mentors{
 
     public static function sendInvitation($groupId, $studentId){
         $connection = Db::getConnection();
+        echo $groupId;
         $mentorId = $_SESSION['mentor']['mentor_id'];
 
         $selectInvitationQuery = mysqli_query($connection,

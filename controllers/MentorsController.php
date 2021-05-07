@@ -6,8 +6,8 @@ include_once SITE_PATH . DS . "controllers" . DS . "AdminController.php";
 /* Контроллер раздела "Менторы" */
 
 class MentorsController{
-    public function actionIndex(){
 
+    public function actionIndex(){
         $mentorsList = [];
         $mentorsList = Mentors::getMentorsList();
         
@@ -17,7 +17,6 @@ class MentorsController{
     }
 
     public function actionView($mentorId){
-
         $mentor = Mentors::getMentorById($mentorId);
 
         require_once SITE_PATH . DS . "views" . DS . "mentor.php";
@@ -26,7 +25,6 @@ class MentorsController{
     }
 
     public static function actionTest(){
-
         if(isset($_POST['mentorTest'])){
             $sphere = filter_var(trim($_POST['sphere']), FILTER_SANITIZE_STRING);
             $eDirections = filter_var(trim($_POST['eDirections']), FILTER_SANITIZE_STRING);
@@ -80,7 +78,6 @@ class MentorsController{
     }
 
     public static function mentorRecommended($recommended){
-
         // Чтобы не путались индексы, формируем новый массив
         $idS = array_slice($recommended, 0, 3);
         $topMentors = Mentors::getRecommendedMentors($idS);
@@ -103,12 +100,10 @@ class MentorsController{
     }
 
     public static function actionMain(){
-        
         require_once SITE_PATH . DS . "views" . DS . "mentorPage.php";
     }
 
     public static function actionCreateGroup(){
-
         if(isset($_POST['createGroup'])){
             unset($_POST['createGroup']);
             $groupInfo = $_POST;
@@ -136,7 +131,6 @@ class MentorsController{
     }
 
     public static function actionViewGroups(){
-
         $groups = Mentors::getGroups();
 
         /*echo "<pre>";
@@ -149,8 +143,8 @@ class MentorsController{
     }
 
     public static function actionInviteStudents($groupId){
-
         $students = Mentors::getStudents($groupId);
+        $_SESSION['group_id'] = $groupId;
 
         if($students == false){
             $result = "В данный момент на портале нет студентов";
@@ -162,8 +156,8 @@ class MentorsController{
     }
 
     public static function actionSendInvitation($studentId){
-
         $groupId = $_SESSION['group_id'];
+        unset($_SESSION['group_id']);
 
         $invitationResult = Mentors::sendInvitation($groupId, $studentId);
 
@@ -185,7 +179,6 @@ class MentorsController{
     }
 
     public function actionManageGroup($id){
-        
         $group = Mentors::getGroupById($id);
         $coursesNum = sizeof($group['coursesList']);
 
@@ -195,17 +188,12 @@ class MentorsController{
             }
         }
 
-        /*echo "<pre>";
-        var_dump($group);
-        echo "</pre>";*/
-
         require_once SITE_PATH . DS . "views" . DS . "manageGroup.php";
 
         return true;
     }
 
     public function actionDeleteCourse($courseId){
-        
         $flag = Mentors::deleteCourse($courseId);
 
         if($flag == true){
