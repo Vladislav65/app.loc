@@ -31,7 +31,7 @@
             </form>
             <p>
             <?php
-                echo $courseAddResult;
+                echo $updateResult;
             ?>
             </p>
         </div>

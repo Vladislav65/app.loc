@@ -69,7 +69,7 @@
                                         echo "<td>" . $item["course_category"] . "</td>";
                                         echo "<td>" . $item["course_descr"] . "</td>";
                                         echo "<td><img class=\"avatar\" src=" . $item["course_img"]."></td>";
-                                        echo "<td> <a href=\"updateCourse" . $item["course_id"]."\">Редактировать</a></td>";
+                                        echo "<td> <a href=\"updateCourse" . $item["course_id"] . ";" . $group['id'] . "\">Редактировать</a></td>";
                                         echo "<td> <a href=\"manageCourse" . $item["course_id"]."\">Содержимое курса</a></td>";
                                         echo "<td> <a href=\"deleteCourseFromGroup" . $item["course_id"] . ";" . $group["id"]."\"><img class=\"deleteIcon\" src=\"templates/images/deleteIcon.jpg\" /></a></td>";
                                     echo "</tr>";

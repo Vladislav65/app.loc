@@ -213,14 +213,18 @@ class MentorsController{
         }
     }
 
-    public function actionUpdateCourse($courseId){
-
+    public function actionUpdateCourse($comparedId){
+        $comparedId = explode(';', $comparedId);
+        $courseId = $comparedId[0];
+        $groupId = $comparedId[1];
+    
         $oldData = Mentors::getCourseForUpdate($courseId);
 
         if(isset($_POST['updateCourse'])){
             $updateData = $_POST;
 
-            Mentors::updateCourse($updateData, $courseId, $oldData['course_img']);
+            $updateResult = Mentors::updateCourse($updateData, $courseId, $oldData['course_img']);
+            exit("<meta http-equiv='refresh' content='0; url=manageGroup{$groupId}'>");
         }
         
         require_once SITE_PATH . DS . "views" . DS . "updateCourse.php";
