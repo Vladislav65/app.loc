@@ -150,13 +150,11 @@ class MentorsController{
 
     public static function actionInviteStudents($groupId){
 
-        $students = Mentors::getStudents();
+        $students = Mentors::getStudents($groupId);
 
         if($students == false){
             $result = "В данный момент на портале нет студентов";
         }
-
-        $_SESSION['group_id'] = $groupId; 
 
         require_once SITE_PATH . DS . "views" . DS . "inviteStudents.php";
 
@@ -197,9 +195,9 @@ class MentorsController{
             }
         }
 
-        echo "<pre>";
+        /*echo "<pre>";
         var_dump($group);
-        echo "</pre>";
+        echo "</pre>";*/
 
         require_once SITE_PATH . DS . "views" . DS . "manageGroup.php";
 
@@ -213,5 +211,28 @@ class MentorsController{
         if($flag == true){
             exit("<meta http-equiv='refresh' content='0; url= mentorMyGroups'>");
         }
+    }
+
+    public function actionUpdateCourse($courseId){
+
+        $oldData = Mentors::getCourseForUpdate($courseId);
+
+        if(isset($_POST['updateCourse'])){
+            $updateData = $_POST;
+
+            
+        }
+        
+        require_once SITE_PATH . DS . "views" . DS . "updateCourse.php";
+
+        return true;
+    }
+
+    public function actionManageCourse($comparedId){
+        $comparedId = explode(';', $comparedId);
+        $courseId = $comparedId[0];
+        $groupId = $comparedId[1];
+        
+        Mentors::manageCourse($courseId, $groupId);
     }
 }

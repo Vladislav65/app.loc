@@ -27,6 +27,8 @@ return array(
     "delMentor([0-9]+)" => "admin/deleteMentor/$1",
     "courseadd" => "admin/courseAdd",
     "mentorCourseAdd" => "mentors/courseAdd/$1",
+    "updateCourse([0-9]+)" => "mentors/updateCourse/$1",
+    "manageCourse([0-9]+)" => "mentors/manageCourse/$1",
     "coursecontrol" => "admin/coursesControl",
     "usercontrol" => "admin/userControl",
     "courseAdmin([0-9]+)" => "admin/courseAdmin/$1",

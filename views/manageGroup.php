@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../templates/css/style.css">
     <link rel="stylesheet" href="../templates/css/student.css">
     <link rel="stylesheet" href="../templates/css/users.css">
+    <link rel="stylesheet" href="../templates/css/courseAdmin.css">
 </head>
 <body>
     <?php if(isset($_SESSION['mentor'])){ ?>
@@ -20,7 +21,17 @@
                         <div class="col-md-12">
                             <h4>Информация группы:</h4>
                             <p>Название: <?php echo $group['name'] ?></p>
-                            <p>Дисциплина: <?php echo $group['speciality'] ?></p>
+                            <?php 
+                                        if($group['speciality'] == 'economics'){
+                                    ?>
+                                            <p>Дисциплина: Экономика</p>
+                                    <?php
+                                        }else{
+                                    ?>
+                                            <p>Дисциплина: Логистика</p>
+                                    <?php
+                                        }
+                            ?>
                             <p>Специализация: <?php echo $group['add_speciality'] ?></p>
                             <?php 
                                 if($group['status'] == 'opened'){
@@ -35,6 +46,8 @@
                             ?>
                             <p>Количество курсов: <?php echo $group['courses_num'] ?></p>
                             <p>Количество студентов: <?php echo $group['students_num'] ?></p>
+                            <p><a href="inviteStudents<?php echo $group["id"] ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Пригласить студентов</p>
+                            <p><a href="mentorCourseAdd<?php echo $group["id"] ?>"><img class="topicPlusIcon" src="templates/images/redPlusIcon.jpg" /></a> Добавить курс</p> <br>
                             <h5>Список курсов: </h5>
                             <?php
                                 echo "<table border=\"2\">";
@@ -44,6 +57,8 @@
                                     <td>Категория курса</td>
                                     <td>Описание</td>
                                     <td>Логотип курса</td>
+                                    <td></td>
+                                    <td></td>
                                     <td>Удалить курс</td>
                                     <tr>";
 
@@ -54,6 +69,8 @@
                                         echo "<td>" . $item["course_category"] . "</td>";
                                         echo "<td>" . $item["course_descr"] . "</td>";
                                         echo "<td><img class=\"avatar\" src=" . $item["course_img"]."></td>";
+                                        echo "<td> <a href=\"updateCourse" . $item["course_id"]."\">Редактировать</a></td>";
+                                        echo "<td> <a href=\"manageCourse" . $item["course_id"]."\">Содержимое курса</a></td>";
                                         echo "<td> <a href=\"deleteCourseFromGroup" . $item["course_id"] . ";" . $group["id"]."\"><img class=\"deleteIcon\" src=\"templates/images/deleteIcon.jpg\" /></a></td>";
                                     echo "</tr>";
                                     }
@@ -72,14 +89,14 @@
                                     <tr>";
 
                                     foreach($group['studentsList'] as $item){
-                                    echo "<tr>";
-                                        echo "<td>" . $item["student_id"] . "</td>";
-                                        echo "<td>" . $item["student_first_name"] . "</td>";
-                                        echo "<td>" . $item["student_surname"] . "</td>";
-                                        echo "<td>" . $item["student_email"] . "</td>";
-                                        echo "<td>" . $item["student_login"] . "</td>";
-                                        echo "<td><img class=\"avatar\" src=" . $item["student_avatar"]."></td>";
-                                    echo "</tr>";
+                                        echo "<tr>";
+                                            echo "<td>" . $item["student_id"] . "</td>";
+                                            echo "<td>" . $item["student_first_name"] . "</td>";
+                                            echo "<td>" . $item["student_surname"] . "</td>";
+                                            echo "<td>" . $item["student_email"] . "</td>";
+                                            echo "<td>" . $item["student_login"] . "</td>";
+                                            echo "<td><img class=\"avatar\" src=" . $item["student_avatar"]."></td>";
+                                        echo "</tr>";
                                     }
                                 echo "</table> <br>";
                             ?>

@@ -195,7 +195,7 @@ class Mentors{
         "SELECT mentor_first_name, mentor_surname FROM mentors WHERE mentor_id = '$ownerId'");
         $mentorInfo = mysqli_fetch_assoc($mentorNameQuery);
 
-        $groupAddQuery = mysqli_query($connection, "INSERT INTO groups (owner,
+        /*$groupAddQuery = mysqli_query($connection, "INSERT INTO groups (owner,
                                                                         owner_name,
                                                                         owner_surname,
                                                                         name,
@@ -208,8 +208,16 @@ class Mentors{
                                                             '{$groupInfo['groupName']}',
                                                             '{$groupInfo['speciality']}',
                                                             '{$groupInfo['add_speciality']}',
-                                                            '{$groupInfo['status']}')");
+                                                            '{$groupInfo['status']}')");*/
 
+        $increaseRateQuery = mysqli_query($connection, 
+            "SELECT rating FROM mentors WHERE mentor_id = '$ownerId'");
+        $rateAssoc = mysqli_fetch_assoc($increaseRateQuery);
+
+        $updatedRate = $rateAssoc['rating'] + 5;
+        $updateRateQuery = mysqli_query($connection,
+            "UPDATE mentors SET rating = '$updatedRate' WHERE mentor_id = '$ownerId'");
+        
         return true;                                                    
     }  
 
@@ -240,7 +248,7 @@ class Mentors{
         }
     }
 
-    public static function getStudents(){
+    public static function getStudents($groupId){
         $connection = Db::getConnection();
         $studentsList = [];
 
@@ -250,6 +258,21 @@ class Mentors{
 
         while($studentsAssoc = mysqli_fetch_assoc($studentsQuery)){
             $studentsList[] = $studentsAssoc;        
+        }
+
+        $studentExistanceQuery = mysqli_query($connection,
+            "SELECT students FROM groups WHERE id = $groupId");
+
+        $students = mysqli_fetch_assoc($studentExistanceQuery);
+        $students = explode(',', $students['students']);
+
+        $studentsNum = sizeof($studentsList);
+        for($i = 0; $i < $studentsNum; $i++){
+            foreach($students as $key => $value){
+                if($studentsList[$i]['student_id'] == $value){
+                    unset($studentsList[$i]);
+                }
+            }
         }
 
         if(!empty($studentsList)){
@@ -361,7 +384,6 @@ class Mentors{
     }
 
     public static function deleteCourse($comparedId){
-        
         $connection = Db::getConnection();
         $coursesList = [];
         $comparedId = explode(';', $comparedId);
@@ -392,5 +414,25 @@ class Mentors{
 
         // после проверок
         return true;
+    }
+
+    public static function manageCourse($courseId, $groupId){
+        $connection = Db::getConnection();
+        $courseGetQuery = mysqli_query($connection,
+            "SELECT * FROM courses WHERE course_id = '$courseId'");
+
+        /*echo "<pre>";
+        var_dump(mysqli_fetch_assoc($courseGetQuery));
+        echo "</pre>";*/
+    }
+
+    public static function getCourseForUpdate($courseId){
+        $connection = Db::getConnection();
+        $courseGetQuery = mysqli_query($connection,
+            "SELECT * FROM courses WHERE course_id = '$courseId'");
+        
+        $courseData = mysqli_fetch_assoc($courseGetQuery);
+
+        return $courseData;
     }
 }
