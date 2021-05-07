@@ -333,7 +333,7 @@ class Mentors{
 
             for($i = 0; $i < sizeof($courseIds); $i++){
                 $coursesGetQuery = mysqli_query($connection,
-                    "SELECT course_img, course_name, course_category, course_descr FROM courses
+                    "SELECT course_id, course_img, course_name, course_category, course_descr FROM courses
                     WHERE course_id = '{$courseIds[$i]}'");
 
                 $group['coursesList'][] = mysqli_fetch_assoc($coursesGetQuery);
@@ -348,7 +348,7 @@ class Mentors{
 
             for($i = 0; $i < sizeof($studentIds); $i++){
                 $studentsGetQuery = mysqli_query($connection,
-                    "SELECT student_first_name, student_surname, student_email, student_avatar, student_login FROM students
+                    "SELECT student_id, student_first_name, student_surname, student_email, student_avatar, student_login FROM students
                     WHERE student_id = '{$studentIds[$i]}'");
 
                 $group['studentsList'][] = mysqli_fetch_assoc($studentsGetQuery);
@@ -358,5 +358,39 @@ class Mentors{
         }
 
         return $group;
+    }
+
+    public static function deleteCourse($comparedId){
+        
+        $connection = Db::getConnection();
+        $coursesList = [];
+        $comparedId = explode(';', $comparedId);
+        $courseId = $comparedId[0];
+        $groupId = $comparedId[1];
+
+        $coursesGetQuery = mysqli_query($connection,
+            "SELECT courses FROM groups WHERE id = '$groupId'");
+
+        $coursesList = mysqli_fetch_assoc($coursesGetQuery);
+        $courses = explode(',', $coursesList['courses']);
+        $coursesNum = sizeof($courses);
+
+        for($i = 0; $i < $coursesNum; $i++){
+            if($courses[$i] == $courseId){
+                unset($courses[$i]);
+            }
+        }
+
+        $courses = implode(',', $courses);
+
+        if($courses == ''){
+            $courses = null;
+        }
+
+        $updateCoursesQuery = mysqli_query($connection,
+        "UPDATE groups SET courses = '$courses' WHERE id = '$groupId'");
+
+        // после проверок
+        return true;
     }
 }

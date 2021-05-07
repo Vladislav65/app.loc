@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../templates/css/style.css">
     <link rel="stylesheet" href="../templates/css/student.css">
+    <link rel="stylesheet" href="../templates/css/users.css">
 </head>
 <body>
     <?php if(isset($_SESSION['mentor'])){ ?>
@@ -38,29 +39,50 @@
                             <?php
                                 echo "<table border=\"2\">";
                                     echo "<tr>
-                                    <td>id студента</td>
-                                    <td>Имя студента</td>
-                                    <td>Фамилия студента</td>
-                                    <td>E-mail студента</td>
-                                    <td>Лого курса</td>
-                                    <td>Логин студента</td>
-                                    <td>Удалить студента</td>
+                                    <td>id курса</td>
+                                    <td>Название курса</td>
+                                    <td>Категория курса</td>
+                                    <td>Описание</td>
+                                    <td>Логотип курса</td>
+                                    <td>Удалить курс</td>
                                     <tr>";
 
-                                    foreach($users["students"] as $student){
+                                    foreach($group['coursesList'] as $item){
                                     echo "<tr>";
-                                        echo "<td>" . $student["student_id"] . "</td>";
-                                        echo "<td>" . $student["student_first_name"] . "</td>";
-                                        echo "<td>" . $student["student_surname"] . "</td>";
-                                        echo "<td>" . $student["student_email"] . "</td>";
-                                        echo "<td><img class=\"avatar\" src=".$student["student_avatar"]."></td>";
-                                        echo "<td>" . $student["student_login"] . "</td>";
-                                        echo "<td> <a href=\"delStudent".$student["student_id"]."\"><img class=\"deleteIcon\" src=\"templates/images/deleteIcon.jpg\" /></a></td>";
+                                        echo "<td>" . $item["course_id"] . "</td>";
+                                        echo "<td>" . $item["course_name"] . "</td>";
+                                        echo "<td>" . $item["course_category"] . "</td>";
+                                        echo "<td>" . $item["course_descr"] . "</td>";
+                                        echo "<td><img class=\"avatar\" src=" . $item["course_img"]."></td>";
+                                        echo "<td> <a href=\"deleteCourseFromGroup" . $item["course_id"] . ";" . $group["id"]."\"><img class=\"deleteIcon\" src=\"templates/images/deleteIcon.jpg\" /></a></td>";
                                     echo "</tr>";
                                     }
                                 echo "</table> <br>";
                             ?>
+                            <h5>Список студентов: </h5>
+                            <?php
+                                echo "<table border=\"2\">";
+                                    echo "<tr>
+                                    <td>id студента</td>
+                                    <td>Имя студента</td>
+                                    <td>Фамилия студента</td>
+                                    <td>Email</td>
+                                    <td>Логин</td>
+                                    <td>Аватар</td>
+                                    <tr>";
 
+                                    foreach($group['studentsList'] as $item){
+                                    echo "<tr>";
+                                        echo "<td>" . $item["student_id"] . "</td>";
+                                        echo "<td>" . $item["student_first_name"] . "</td>";
+                                        echo "<td>" . $item["student_surname"] . "</td>";
+                                        echo "<td>" . $item["student_email"] . "</td>";
+                                        echo "<td>" . $item["student_login"] . "</td>";
+                                        echo "<td><img class=\"avatar\" src=" . $item["student_avatar"]."></td>";
+                                    echo "</tr>";
+                                    }
+                                echo "</table> <br>";
+                            ?>
                         </div>
                     </div>
                 </div>

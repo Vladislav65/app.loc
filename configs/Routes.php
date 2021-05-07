@@ -16,6 +16,7 @@ return array(
     "mentorGr" => "mentors/createGroup",
     "mentorMyGroups" => "mentors/viewGroups",
     "manageGroup" => "mentors/manageGroup/$1",
+    "deleteCourseFromGroup" => "mentors/deleteCourse/$1",
     "inviteStudents([0-9]+)" => "mentors/inviteStudents/$1",
     "sendInvitation([0-9]+)" => "mentors/sendInvitation/$1",
     "userR" => "user/register",

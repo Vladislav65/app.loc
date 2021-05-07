@@ -272,7 +272,9 @@ class AdminController{
     public function actionDeleteCourse($courseId){
         
         $result = Admin::deleteCourse($courseId);
-        exit("<meta http-equiv='refresh' content='0; url= coursecontrol'>");
+        if(isset($_SESSION['admin'])){
+            exit("<meta http-equiv='refresh' content='0; url= coursecontrol'>");
+        }
     }
 
     public function actionDeleteStudent($studentId){

@@ -189,6 +189,13 @@ class MentorsController{
     public function actionManageGroup($id){
         
         $group = Mentors::getGroupById($id);
+        $coursesNum = sizeof($group['coursesList']);
+
+        for($i = 0; $i < $coursesNum; $i++){
+            if($group['coursesList'][$i] == null){
+                unset($group['coursesList'][$i]);
+            }
+        }
 
         echo "<pre>";
         var_dump($group);
@@ -197,5 +204,14 @@ class MentorsController{
         require_once SITE_PATH . DS . "views" . DS . "manageGroup.php";
 
         return true;
+    }
+
+    public function actionDeleteCourse($courseId){
+        
+        $flag = Mentors::deleteCourse($courseId);
+
+        if($flag == true){
+            exit("<meta http-equiv='refresh' content='0; url= mentorMyGroups'>");
+        }
     }
 }
