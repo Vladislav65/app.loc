@@ -226,5 +226,9 @@ class MentorsController{
         $groupId = $comparedId[1];
         
         Mentors::manageCourse($courseId, $groupId);
+
+        require_once SITE_PATH . DS . "views" . DS . "manageCourse.php";
+
+        return true;
     }
 }

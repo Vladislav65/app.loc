@@ -284,7 +284,6 @@ class Mentors{
 
     public static function sendInvitation($groupId, $studentId){
         $connection = Db::getConnection();
-        echo $groupId;
         $mentorId = $_SESSION['mentor']['mentor_id'];
 
         $selectInvitationQuery = mysqli_query($connection,
@@ -422,9 +421,9 @@ class Mentors{
         $courseGetQuery = mysqli_query($connection,
             "SELECT * FROM courses WHERE course_id = '$courseId'");
 
-        /*echo "<pre>";
+        echo "<pre>";
         var_dump(mysqli_fetch_assoc($courseGetQuery));
-        echo "</pre>";*/
+        echo "</pre>";
     }
 
     public static function getCourseForUpdate($courseId){

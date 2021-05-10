@@ -14,4 +14,11 @@ class TopicsController{
         
         return true;
     }
+
+    public function actionTopicAdd($courseId){
+        
+        require_once SITE_PATH . DS . "views" . DS . "topicAdd.php";
+        
+        return true;
+    }
 }

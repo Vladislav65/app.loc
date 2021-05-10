@@ -10,7 +10,6 @@ include_once SITE_PATH . DS . "models" . DS . "Tests.php";
 class AdminController{
 
     public function actionIndex(){
-
         $statistics = Admin::statistics();
 
         require_once SITE_PATH . DS . "views" . DS . "admin.php";
@@ -19,7 +18,6 @@ class AdminController{
     }
 
     public function actionCourseAdd(){
-
         if(isset($_POST['courseAdd'])){
             $courseName = filter_var(trim($_POST['courseName']), FILTER_SANITIZE_STRING);
             $courseCategory = filter_var(trim($_POST['courseCategory']), FILTER_SANITIZE_STRING);
@@ -51,7 +49,6 @@ class AdminController{
     }
 
     public function actionUserControl(){
-
         $users = Admin::userControl();
 
         require_once SITE_PATH . DS . "views" . DS . "users.php";
@@ -60,7 +57,6 @@ class AdminController{
     }
 
     public function actionCoursesControl(){
-
         $coursesList = [];
         $coursesList = Courses::getCoursesList();
 
@@ -70,7 +66,6 @@ class AdminController{
     }
 
     public function actionTopicAdd($courseId){
-
         if(isset($_POST['topicAdd'])){
             $topicTitle = filter_var(trim($_POST['topicTitle']), FILTER_SANITIZE_STRING);
             $topic = filter_var(trim($_POST['topic']), FILTER_SANITIZE_STRING);
@@ -95,7 +90,6 @@ class AdminController{
     }
 
     public function actionTestAdd($courseId){
-
         $test = $_POST;
 
         if(isset($_POST['test'])){
@@ -121,7 +115,6 @@ class AdminController{
     }
 
     public function actionAddStudent(){
-
         $_SESSION['regErrorStack'] = [];
 
         if(isset($_POST['submit'])){
@@ -182,7 +175,6 @@ class AdminController{
     }
 
     public function actionGraph(){
-
         $information = Admin::graph();
         $counters = [];
 
@@ -261,7 +253,6 @@ class AdminController{
     }
 
     public function actionSaveFile(){
-        
         $fileResult = Admin::saveToFile();
 
         require_once SITE_PATH . DS . "views" . DS . "admin.php";
@@ -270,7 +261,6 @@ class AdminController{
     }
 
     public function actionDeleteCourse($courseId){
-        
         $result = Admin::deleteCourse($courseId);
         if(isset($_SESSION['admin'])){
             exit("<meta http-equiv='refresh' content='0; url= coursecontrol'>");
@@ -278,13 +268,11 @@ class AdminController{
     }
 
     public function actionDeleteStudent($studentId){
-        
         $result = Admin::deleteStudent($studentId);
         exit("<meta http-equiv='refresh' content='0; url= usercontrol'>");
     }
 
     public function actionDeleteMentor($mentorId){
-        
         $result = Admin::deleteMentor($mentorId);
         exit("<meta http-equiv='refresh' content='0; url= usercontrol'>");
     }

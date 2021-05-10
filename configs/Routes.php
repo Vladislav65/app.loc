@@ -33,7 +33,7 @@ return array(
     "usercontrol" => "admin/userControl",
     "courseAdmin([0-9]+)" => "admin/courseAdmin/$1",
     "deleteCourse([0-9]+)" => "admin/deleteCourse/$1",
-    "topicAdd([0-9]+)" => "admin/topicAdd/$1",
+    "topicAdd([0-9]+)" => "topics/topicAdd/$1",
     "graph" => "admin/graph",
     "savefile" => "admin/saveFile",
     "addStudent" => "admin/addStudent",
