@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Добавить тему </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="../templates/js/Script.js"></script>
+    <link rel="stylesheet" href="../templates/css/summernote.min.css">
+    <link rel="stylesheet" href="../templates/css/fontawesome.min.css">
     <link rel="stylesheet" href="../templates/css/style.css">
     <link rel="stylesheet" href="../templates/css/topicAdd.css">
 </head>
@@ -20,7 +29,7 @@
             <label>Добавьте фото темы:</label> <br>
             <input type="file" name="topicImage"> <br> <br>
             <label>Напечатайте содержимое темы:</label> <br>
-            <textarea name="topic" rows="20" cols="65" style="resize: none;"></textarea><br>
+            <textarea id="addTopic" name="topic" rows="20" cols="65" style="resize: none;"></textarea><br>
             <input class="btn" type="submit" name="topicAdd" value="Добавить тему"> 
         </form>
     </div>
