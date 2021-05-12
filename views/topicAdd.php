@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Добавить тему </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
     <!-- include summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
     <script src="../templates/js/Script.js"></script>
-    <link rel="stylesheet" href="../templates/css/summernote.min.css">
-    <link rel="stylesheet" href="../templates/css/fontawesome.min.css">
     <link rel="stylesheet" href="../templates/css/style.css">
     <link rel="stylesheet" href="../templates/css/topicAdd.css">
 </head>
@@ -21,7 +20,7 @@
     <?php if(isset($_SESSION['mentor'])){ ?>
     <?php include SITE_PATH . DS . "components" . DS . "mentorHeader.php" ?>
 
-    <div class="topicMain" style="text-align: center;">
+    <div class="topicMain"> <!-- style="text-align: center; -->
     <h3>Добавление новой темы</h3> 
         <form action="#" method="post" enctype="multipart/form-data">
             <label>Введите название темы:</label> <br>
@@ -29,7 +28,7 @@
             <label>Добавьте фото темы:</label> <br>
             <input type="file" name="topicImage"> <br> <br>
             <label>Напечатайте содержимое темы:</label> <br>
-            <textarea id="addTopic" name="topic" rows="20" cols="65" style="resize: none;"></textarea><br>
+            <textarea id="addTopic" name="topic" rows="20" cols="65" style="resize: none; text-align: center;"></textarea><br>
             <input class="btn" type="submit" name="topicAdd" value="Добавить тему"> 
         </form>
     </div>
