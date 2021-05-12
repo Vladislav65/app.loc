@@ -8,7 +8,6 @@ include_once SITE_PATH . DS . "models" . DS . "Tests.php";
 class CoursesController{
 
     public function actionIndex(){
-        
         $coursesList = [];
         $coursesList = Courses::getCoursesList();
 
@@ -18,7 +17,6 @@ class CoursesController{
     }
 
     public function actionView($courseId){
-
         $course = Courses::getCourseItemById($courseId);
 
         require_once SITE_PATH . DS . "views" . DS . "course.php";
@@ -27,7 +25,6 @@ class CoursesController{
     }
 
     public function actionStart($courseId){
-
         $studentId = $_SESSION['student']['student_id'];
         $topics = Courses::getTopics($courseId);
         $tests = Tests::getTests($courseId);
