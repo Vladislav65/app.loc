@@ -1,5 +1,6 @@
 <?php
 
+include_once SITE_PATH . DS . "models" . DS . "Topics.php";;
 /* Разобраться, как записать $connection 1 раз (возм. конструктор) */
 
 class Mentors{
@@ -421,8 +422,12 @@ class Mentors{
         $courseGetQuery = mysqli_query($connection,
             "SELECT * FROM courses WHERE course_id = '$courseId'");
 
+        $courseAssoc = mysqli_fetch_assoc($courseGetQuery);
+
+        $courseTopics = Topics::getCourseTopics($courseAssoc['topics']); 
+
         echo "<pre>";
-        var_dump(mysqli_fetch_assoc($courseGetQuery));
+        var_dump($courseTopics);
         echo "</pre>";
     }
 

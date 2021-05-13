@@ -24,12 +24,12 @@ class Topics{
         $lastInsertIdAssoc = mysqli_fetch_assoc($lastIdQuery);
 
         if($lastInsertIdAssoc == null){
-            $lastInsertId = 0;
+            $lastInsertId = 1;
         }else{
             $lastInsertId = $lastInsertIdAssoc['topic_id'];
         }
         
-        /*if(!(empty($_FILES['topicImage']['tmp_name']))){
+        if(!(empty($_FILES['topicImage']['tmp_name']))){
             $type = explode('/', $_FILES['topicImage']['type']);
             $path = 'templates/images/topics/' . $lastInsertId . '.' . $type[1];
             move_uploaded_file($_FILES['topicImage']['tmp_name'], $path);
@@ -37,7 +37,7 @@ class Topics{
 
         $saveTopicQuery = mysqli_query($connection,
             "INSERT INTO topics(topic_title, topic_img, topic_content)
-            VALUES('{$topic['topicTitle']}', '{$path}', '{$topic['topic']}')");*/
+            VALUES('{$topic['topicTitle']}', '{$path}', '{$topic['topic']}')");
 
         $selectTopicsCourseQuery = mysqli_query($connection,
             "SELECT topics FROM courses WHERE course_id = '$courseId'");
@@ -53,17 +53,40 @@ class Topics{
             $updateTopicsQuery = mysqli_query($connection, 
             "UPDATE courses SET topics = '$topics' WHERE course_id = '$courseId'");
         }
-        /*echo "<pre>";
-        var_dump($topics);
-        echo "</pre>";*/
 
-        /*$getTopicQuery = mysqli_query($connection,
-        "SELECT * FROM topics");
+        /*$increaseRateQuery = mysqli_query($connection, 
+            "SELECT rating FROM mentors WHERE mentor_id = '$ownerId'");
+        $rateAssoc = mysqli_fetch_assoc($increaseRateQuery);
 
-        $top = mysqli_fetch_assoc($getTopicQuery);
-        $top = html_entity_decode($top['topic_content']);*/
-
+        $updatedRate = $rateAssoc['rating'] + 5;
+        $updateRateQuery = mysqli_query($connection,
+            "UPDATE mentors SET rating = '$updatedRate' WHERE mentor_id = '$ownerId'");
+*/
         // после проверок
-        return 1;
+        return true;
+    }
+
+    public static function getCourseTopics($topicsIds){
+        $connection = Db::getConnection();
+        $topicsIds = explode(',', $topicsIds);
+        $topics = [];
+
+        for($i = 0; $i < sizeof($topicsIds); $i++){
+            $getTopicsQuery = mysqli_query($connection,
+            "SELECT * FROM topics WHERE topic_id = '{$topicsIds[$i]}'");
+
+            $topics[] = mysqli_fetch_assoc($getTopicsQuery);
+        }
+
+        if($topics[0] != null){
+            echo "dhrtsegrn";
+            foreach($topics as &$item){
+                $item['topic_content'] = html_entity_decode($item['topic_content']);
+            }
+        }else{
+            $topics = 'В данном курсе отсутствуют темы';
+        }
+
+        return $topics;
     }
 }
