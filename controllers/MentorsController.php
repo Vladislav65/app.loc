@@ -90,9 +90,6 @@ class MentorsController{
         if($topMentors[2] == NULL){
             unset($topMentors[2]);
         }
-        /*echo "<pre>";
-        var_dump($topMentors);
-        echo "</pre>";*/
 
         require_once SITE_PATH . DS . "views" . DS . "recommendedMentor.php";
 

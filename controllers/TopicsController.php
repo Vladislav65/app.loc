@@ -14,12 +14,15 @@ class TopicsController{
         return true;
     }
 
-    public function actionTopicAdd($courseId){
+    public function actionTopicAdd($comparedId){
+        $comparedId = explode(';', $comparedId);
+        $courseId = $comparedId[0];
+        $mentorId = $comparedId[1];
         if(isset($_POST['topicAdd'])){
             $topic = $_POST;
             $topic['topic'] = filter_var(htmlentities($topic['topic']), FILTER_SANITIZE_STRING);
 
-            $result = Topics::topicAdd($topic, $courseId);
+            $result = Topics::topicAdd($topic, $courseId, $mentorId);
         }
         
         require_once SITE_PATH . DS . "views" . DS . "topicAdd.php";

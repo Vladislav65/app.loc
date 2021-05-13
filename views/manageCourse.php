@@ -20,7 +20,7 @@
     var_dump($topics);
     echo "</pre>";*/
     ?>
-    <p><a href="topicAdd<?php echo $courseId ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Добавить тему</p>
+    <p><a href="topicAdd<?php echo $courseId . ';' . $_SESSION['mentor']['mentor_id'] ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Добавить тему</p>
         <div class="courseTopics">
         <?php foreach($topics as $topic){ ?>
             <div class="courseTopic">

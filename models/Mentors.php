@@ -425,10 +425,6 @@ class Mentors{
         $courseAssoc = mysqli_fetch_assoc($courseGetQuery);
 
         $courseTopics = Topics::getCourseTopics($courseAssoc['topics']); 
-
-        echo "<pre>";
-        var_dump($courseTopics);
-        echo "</pre>";
     }
 
     public static function getCourseForUpdate($courseId){

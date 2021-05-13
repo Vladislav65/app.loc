@@ -15,7 +15,7 @@ class Topics{
         return $topic;
     }
 
-    public static function topicAdd($topic, $courseId){
+    public static function topicAdd($topic, $courseId, $mentorId){
         $connection = Db::getConnection();
         $lastInsertId = '';
 
@@ -26,7 +26,7 @@ class Topics{
         if($lastInsertIdAssoc == null){
             $lastInsertId = 1;
         }else{
-            $lastInsertId = $lastInsertIdAssoc['topic_id'];
+            $lastInsertId = $lastInsertIdAssoc['topic_id'] + 1;
         }
         
         if(!(empty($_FILES['topicImage']['tmp_name']))){
@@ -54,14 +54,14 @@ class Topics{
             "UPDATE courses SET topics = '$topics' WHERE course_id = '$courseId'");
         }
 
-        /*$increaseRateQuery = mysqli_query($connection, 
-            "SELECT rating FROM mentors WHERE mentor_id = '$ownerId'");
+        $increaseRateQuery = mysqli_query($connection, 
+            "SELECT rating FROM mentors WHERE mentor_id = '$mentorId'");
         $rateAssoc = mysqli_fetch_assoc($increaseRateQuery);
 
-        $updatedRate = $rateAssoc['rating'] + 5;
+        $updatedRate = $rateAssoc['rating'] + 3;
         $updateRateQuery = mysqli_query($connection,
-            "UPDATE mentors SET rating = '$updatedRate' WHERE mentor_id = '$ownerId'");
-*/
+            "UPDATE mentors SET rating = '$updatedRate' WHERE mentor_id = '$mentorId'");
+
         // после проверок
         return true;
     }
@@ -79,7 +79,6 @@ class Topics{
         }
 
         if($topics[0] != null){
-            echo "dhrtsegrn";
             foreach($topics as &$item){
                 $item['topic_content'] = html_entity_decode($item['topic_content']);
             }
