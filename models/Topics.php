@@ -88,4 +88,24 @@ class Topics{
 
         return $topics;
     }
+
+    public static function updateTopic($updatedTopic, $topicId, $mentorId, $topicImg){
+        $connection = Db::getConnection();
+
+        if($_FILES['topicImage']['tmp_name'] != ''){
+            unlink($topicImg);
+            $topicImg = 'templates/images/' . $_FILES['courseImage']['name'];
+            move_uploaded_file($_FILES['courseImage']['tmp_name'], $courseImg);
+        }
+        $updatedTopic['topic'] = filter_var(htmlentities($updatedTopic['topic']), FILTER_SANITIZE_STRING);
+        
+        $updateTopicQuery = mysqli_query($connection,
+        "UPDATE topics SET topic_title = '{$updatedTopic['topicTitle']}',
+                           topic_img = '$topicImg',   
+                           topic_content = '{$updatedTopic['topic']}'
+                           WHERE topic_id = '$topicId'");
+    
+        // после проверок
+        return true;
+    }
 }

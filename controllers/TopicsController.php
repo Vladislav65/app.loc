@@ -18,14 +18,37 @@ class TopicsController{
         $comparedId = explode(';', $comparedId);
         $courseId = $comparedId[0];
         $mentorId = $comparedId[1];
+
         if(isset($_POST['topicAdd'])){
             $topic = $_POST;
             $topic['topic'] = filter_var(htmlentities($topic['topic']), FILTER_SANITIZE_STRING);
 
             $result = Topics::topicAdd($topic, $courseId, $mentorId);
+            // после проверок
+
+            exit("<meta http-equiv='refresh' content='0; url=manageCourse{$courseId}'>");
         }
         
         require_once SITE_PATH . DS . "views" . DS . "topicAdd.php";
+        
+        return true;
+    }
+
+    public function actionUpdateTopic($comparedId){
+        $comparedId = explode(';', $comparedId);
+        $topicId = $comparedId[0];
+        $mentorId = $comparedId[1];
+
+        $topic = Topics::getTopic($topicId);
+        $topic['topic_content'] = html_entity_decode($topic['topic_content']);
+
+        if(isset($_POST['updateTopic'])){
+            $updatedTopic = $_POST;
+
+            Topics::updateTopic($updatedTopic, $topicId, $mentorId, $topic['topic_img']);
+        }
+
+        require_once SITE_PATH . DS . "views" . DS . "updateTopic.php";
         
         return true;
     }

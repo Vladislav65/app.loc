@@ -37,68 +37,7 @@ class Admin{
         return $statistics;
     }
 
-    public static function checkCourseExistance($courseName){
-        
-        $flag = false;
-        $connection = Db::getConnection();
-
-        $courseExistanceQuery = mysqli_query($connection,"SELECT * FROM courses WHERE course_name = '$courseName'");
-        $courseExistanceAssoc = mysqli_fetch_assoc($courseExistanceQuery);
-
-        if($courseExistanceAssoc == NULL){
-            $flag = true;
-            return $flag;
-        }else{
-            return $flag;
-        }
-    }
-
-    public static function courseAdd($course){
-
-        $connection = Db::getConnection();
-
-        $courseImgPath = $course["courseImgPath"];
-        $courseName = $course["courseName"];
-        $courseCategory = $course["courseCategory"];
-        $courseLength = $course["courseLength"];
-        $courseDescr = $course["courseDescr"];
-
-        $courseImgArr = explode("/", $courseImgPath);
-        if($courseImgArr[2] == ""){
-            $courseImgArr[2] = "noImg.jpg";
-            $courseImgPath = implode("/", $courseImgArr);
-        }
-
-        $flag = self::checkCourseExistance($courseName);
-
-        if(!move_uploaded_file($_FILES['courseImage']['tmp_name'], $courseImgPath)){
-                $_SESSION['avatarError'] = "Не удалось загрузить фото. Попробуйте загрузить его из профиля";
-        }
-        
-        if($flag == true){
-            $courseAddQuery = mysqli_query($connection, "INSERT INTO courses (
-                                                                    course_img,
-                                                                    course_name,
-                                                                    course_category,
-                                                                    course_length,
-                                                                    course_descr
-                                                                    )
-                                                            VALUES ('$courseImgPath',
-                                                                    '$courseName',
-                                                                    '$courseCategory',
-                                                                    '$courseLength',
-                                                                    '$courseDescr'
-                                                                    )");
-            $courseAddResult = "Курс был успешно добавлен";
-        }else{
-            $courseAddResult = "Курс с таким названием уже существует";
-        }
-
-        return $courseAddResult;
-    }
-
     public static function topicAdd($topic){
-
         $connection = Db::getConnection();
 
         $topicImgPath = $topic["topicImgPath"];

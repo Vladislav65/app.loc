@@ -2,6 +2,7 @@
 
 include_once SITE_PATH . DS . "models" . DS . "Mentors.php";
 include_once SITE_PATH . DS . "controllers" . DS . "AdminController.php";
+include_once SITE_PATH . DS . "controllers" . DS . "CoursesController.php";
 
 /* Контроллер раздела "Менторы" */
 
@@ -130,10 +131,6 @@ class MentorsController{
     public static function actionViewGroups(){
         $groups = Mentors::getGroups();
 
-        /*echo "<pre>";
-        var_dump($groups);
-        echo "</pre>";*/
-
         require_once SITE_PATH . DS . "views" . DS . "myGroups.php";
 
         return true;
@@ -164,10 +161,12 @@ class MentorsController{
     }
 
     public static function actionCourseAdd($groupId){
-        $newCourse = new AdminController();
+        $newCourse = new CoursesController();
         $flag = $newCourse->actionCourseAdd();
+    
         if($flag == 'Курс был успешно добавлен'){
             Mentors::insertCourseToGroup($groupId);
+            exit("<meta http-equiv='refresh' content='0; url= manageGroup{$groupId}'>");
         }
 
         /*require_once SITE_PATH . DS . "views" . DS . "courseAdd.php";*/
@@ -222,7 +221,7 @@ class MentorsController{
         $courseId = $comparedId[0];
         $groupId = $comparedId[1];
         
-        Mentors::manageCourse($courseId, $groupId);
+        $courseTopics = Mentors::manageCourse($courseId, $groupId);
 
         require_once SITE_PATH . DS . "views" . DS . "manageCourse.php";
 

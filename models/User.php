@@ -5,7 +5,6 @@
 class User{
 
     public static function register($registerBuf){
-
         $connection = Db::getConnection();
 
         $registerData = $registerBuf;
@@ -136,7 +135,6 @@ class User{
     }
 
     public static function addMentorReg($addRegData){
-
         $connection = DB::getConnection();
 
         $mentorIdQuery = mysqli_query($connection,
@@ -177,7 +175,6 @@ class User{
     }
 
     public static function auth($log, $pass){
-
         $login = $log;
         $password = $pass;
 
@@ -213,7 +210,6 @@ class User{
     }
 
     public static function mentorAuth($login, $password){
-
         $connection = Db::getConnection();
 
         $authQuery = mysqli_query($connection, 
@@ -249,7 +245,6 @@ class User{
     }
 
     public static function adminControl($login, $password){
-
         $connection = Db::getConnection();
 
         $adminAuthQuery = mysqli_query($connection, "SELECT * FROM admin
@@ -272,7 +267,6 @@ class User{
     }
 
     public static function isLogged(){
-        
         if(isset($_SESSION['student']) || isset($_SESSION['mentor'])){
             return true;
         }else{

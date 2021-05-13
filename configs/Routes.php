@@ -9,6 +9,7 @@ return array(
     "coursesS([0-9]+)" => "courses/start/$1",
     "courses" => "courses/index", // метод actionIndex в контроллере cources
     "topic([0-9]+)" => "topics/view/$1",
+    "updateTopic([0-9]+)" => "topics/updateTopic/$1",
     "mentors([0-9]+)" => "mentors/view/$1",
     "mentorsT" => "mentors/test",
     "mentors" => "mentors/index",
@@ -25,7 +26,7 @@ return array(
     "admin" => "admin/index",
     "delStudent([0-9]+)" => "admin/deleteStudent/$1",
     "delMentor([0-9]+)" => "admin/deleteMentor/$1",
-    "courseadd" => "admin/courseAdd",
+    "courseadd" => "courses/courseAdd",
     "mentorCourseAdd" => "mentors/courseAdd/$1",
     "updateCourse([0-9]+)" => "mentors/updateCourse/$1",
     "manageCourse([0-9]+)" => "mentors/manageCourse/$1",

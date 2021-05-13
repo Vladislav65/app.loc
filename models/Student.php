@@ -5,7 +5,6 @@
 class Student{
 
     public static function getInvitations($studentId){
-
         $connection = Db::getConnection();
         $invitationList = [];
         $invitationData = [];
@@ -44,7 +43,6 @@ class Student{
     }
 
     public static function join($studentId, $id){
-        
         $connection = Db::getConnection();
         $joinQuery = mysqli_query($connection,
         "UPDATE invitations SET status = 'accepted' WHERE id = '$id' AND student_id = '$studentId'");

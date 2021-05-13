@@ -9,7 +9,6 @@ class UserController{
     public $mentorId;
 
     public function actionRegister(){
-
         $_SESSION['regErrorStack'] = [];
 
         if(isset($_POST['submit'])){
@@ -22,7 +21,10 @@ class UserController{
             $confirmPassword = filter_var(trim($_POST['confirmPassword']), FILTER_SANITIZE_STRING);
         }
 
-        $path = "templates/avatars/" . $_FILES['avatar']['name'];
+        $type = explode('/', $_FILES['avatar']['type']);
+        $extension = $type[1];
+
+        $path = "templates/images/avatars/" . $login . '.' . $extension;
         
         $registerData = array(
             "firstName" => $firstName,
@@ -58,7 +60,7 @@ class UserController{
                 if($status == 'student'){
                     $flag = User::register($registerData);
                 }else{
-                    echo $flag = User::mentorRegister($registerData);
+                    $flag = User::mentorRegister($registerData);
                     $this->mentorId = $flag;
                     exit("<meta http-equiv='refresh' content='0; url= userMR'>");
                 }
@@ -75,7 +77,6 @@ class UserController{
     }
 
     public function actionMentorReg(){
-
         if(isset($_POST['mentorReg'])){
             $addRegData = $_POST; 
             unset($addRegData['mentorReg']);
@@ -92,7 +93,6 @@ class UserController{
     }
 
     public function actionAuth(){
-
         $authFlag = true;
 
         if(isset($_POST['auth'])){
@@ -103,7 +103,6 @@ class UserController{
         }
 
         if(isset($adminCheck)){
-
             $adminFlag = User::adminControl($login, $password);
 
             if($adminFlag == false){
@@ -135,7 +134,6 @@ class UserController{
     }
 
     public function actionLogout(){
-
         unset($_SESSION["student"]);
         unset($_SESSION["mentor"]);
         exit("<meta http-equiv='refresh' content='0; url= /'>");
@@ -143,7 +141,6 @@ class UserController{
     }
 
     public function actionLogoutA(){
-
         unset($_SESSION["admin"]);
         exit("<meta http-equiv='refresh' content='0; url= /'>");
         //header("Location: /");

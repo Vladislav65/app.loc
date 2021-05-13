@@ -17,37 +17,6 @@ class AdminController{
         return true;
     }
 
-    public function actionCourseAdd(){
-        if(isset($_POST['courseAdd'])){
-            $courseName = filter_var(trim($_POST['courseName']), FILTER_SANITIZE_STRING);
-            $courseCategory = filter_var(trim($_POST['courseCategory']), FILTER_SANITIZE_STRING);
-            $courseLength = filter_var(trim($_POST['length']), FILTER_SANITIZE_STRING);
-            $courseDescr = filter_var(trim($_POST['descr']), FILTER_SANITIZE_STRING);
-        }
-
-        $courseImgPath = "templates/images/" . $_FILES['courseImage']['name'];
-
-        if($courseName != NULL &&
-           $courseCategory != NULL &&
-           $courseLength != NULL &&
-           $courseDescr != NULL){
-
-            $course = array(
-                "courseName" => $courseName,
-                "courseImgPath" => $courseImgPath,
-                "courseCategory" => $courseCategory,
-                "courseLength" => $courseLength,
-                "courseDescr" => $courseDescr
-            );
-
-            $courseAddResult = Admin::courseAdd($course);
-        }
-
-        require_once SITE_PATH . DS . "views" . DS . "courseAdd.php";
-
-        return $courseAddResult;
-    }
-
     public function actionUserControl(){
         $users = Admin::userControl();
 

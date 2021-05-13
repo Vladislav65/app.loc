@@ -15,19 +15,15 @@
 
     <div class="courseMaterials">
     <h4>Темы курса:</h4>
-    <?php
-    /*echo "<pre>";
-    var_dump($topics);
-    echo "</pre>";*/
-    ?>
+    
     <p><a href="topicAdd<?php echo $courseId . ';' . $_SESSION['mentor']['mentor_id'] ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Добавить тему</p>
         <div class="courseTopics">
-        <?php foreach($topics as $topic){ ?>
+        <?php foreach($courseTopics as $topic){ ?>
             <div class="courseTopic">
                 <div><img src="<?php echo $topic["topic_img"] ?>" class="topicImg" style="width:280px; heigth:160px"></div>
                 <div>
                     <h5><?php echo $topic["topic_title"]; ?></h5>
-                    <p><?php echo mb_substr($topic['topic_content'], 0, 310, 'utf-8'); ?></p>
+                    <p><a href="updateTopic<?php echo $topic['topic_id'] . ";" . $_SESSION['mentor']['mentor_id']?>">Просмотреть тему</a></p>
                 </div>
             </div>
         <?php 

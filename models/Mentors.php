@@ -341,13 +341,14 @@ class Mentors{
             "UPDATE groups SET courses = '$courses' WHERE id = '$groupId'");
         }
         
-        //return ;
+        // после проверок
+        return true;
     }
 
     public static function getGroupById($id){
         $connection = Db::getConnection();
         $groupGetQuery = mysqli_query($connection,
-        "SELECT * FROM groups WHERE id = '$id'");
+            "SELECT * FROM groups WHERE id = '$id'");
 
         $group = mysqli_fetch_assoc($groupGetQuery);
 
@@ -425,6 +426,8 @@ class Mentors{
         $courseAssoc = mysqli_fetch_assoc($courseGetQuery);
 
         $courseTopics = Topics::getCourseTopics($courseAssoc['topics']); 
+
+        return $courseTopics;
     }
 
     public static function getCourseForUpdate($courseId){
@@ -441,7 +444,7 @@ class Mentors{
         $connection = Db::getConnection();
         if($_FILES['courseImage']['tmp_name'] != ''){
             unlink($courseImg);
-            $courseImg = 'templates/images/' . $_FILES['courseImage']['name'];
+            $courseImg = 'templates/images/courses';
             move_uploaded_file($_FILES['courseImage']['tmp_name'], $courseImg);
         }
         
