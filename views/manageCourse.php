@@ -23,7 +23,7 @@
                 <div><img src="<?php echo $topic["topic_img"] ?>" class="topicImg" style="width:280px; heigth:160px"></div>
                 <div>
                     <h5><?php echo $topic["topic_title"]; ?></h5>
-                    <p><a href="updateTopic<?php echo $topic['topic_id'] . ";" . $_SESSION['mentor']['mentor_id']?>">Просмотреть тему</a></p>
+                    <p><a href="updateTopic<?php echo $topic['topic_id'] . ";" . $_SESSION['mentor']['mentor_id'] . ";" . $courseId?>">Просмотреть тему</a></p>
                 </div>
             </div>
         <?php 

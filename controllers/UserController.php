@@ -112,7 +112,6 @@ class UserController{
             }
         }else{
             if($login != NULL && $password != NULL){
-
                 $authFlag = User::auth($login, $password);
 
                 if($authFlag == false){

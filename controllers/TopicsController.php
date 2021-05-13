@@ -38,6 +38,7 @@ class TopicsController{
         $comparedId = explode(';', $comparedId);
         $topicId = $comparedId[0];
         $mentorId = $comparedId[1];
+        $courseId = $comparedId[2];
 
         $topic = Topics::getTopic($topicId);
         $topic['topic_content'] = html_entity_decode($topic['topic_content']);
@@ -46,6 +47,7 @@ class TopicsController{
             $updatedTopic = $_POST;
 
             Topics::updateTopic($updatedTopic, $topicId, $mentorId, $topic['topic_img']);
+            exit("<meta http-equiv='refresh' content='0; url=manageCourse{$courseId}'>");
         }
 
         require_once SITE_PATH . DS . "views" . DS . "updateTopic.php";

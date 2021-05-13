@@ -93,9 +93,11 @@ class Topics{
         $connection = Db::getConnection();
 
         if($_FILES['topicImage']['tmp_name'] != ''){
+            $type = explode('/', $_FILES['topicImage']['type']);
+            $extension = $type[1];
             unlink($topicImg);
-            $topicImg = 'templates/images/' . $_FILES['courseImage']['name'];
-            move_uploaded_file($_FILES['courseImage']['tmp_name'], $courseImg);
+            $topicImg = 'templates/images/topics/' . $topicId . '.' . $extension;
+            move_uploaded_file($_FILES['topicImage']['tmp_name'], $topicImg);
         }
         $updatedTopic['topic'] = filter_var(htmlentities($updatedTopic['topic']), FILTER_SANITIZE_STRING);
         
