@@ -108,7 +108,7 @@ class Student{
 
         $connection = Db::getConnection();
         $groupsGetQuery = mysqli_query($connection,
-        "SELECT groups FROM students WHERE student_id = '{$studentId}'");
+            "SELECT groups FROM students WHERE student_id = '{$studentId}'");
 
         $groupsAssoc = mysqli_fetch_assoc($groupsGetQuery);
 
@@ -116,10 +116,43 @@ class Student{
 
         for($i = 0; $i < sizeof($groupsList); $i++){
             $groupsGet = mysqli_query($connection, 
-            "SELECT * FROM groups WHERE id = '{$groupsList[$i]}'");
+                "SELECT * FROM groups WHERE id = '{$groupsList[$i]}'");
             $fullGroups[] = mysqli_fetch_assoc($groupsGet);
         }
 
         return $fullGroups;
+    }
+
+    public static function topicLearned($topicId, $studentId){
+        $topicId = (int) $topicId;
+        $topicsList = [];
+
+        $connection = Db::getConnection();
+        $topicsLearnedQuery = mysqli_query($connection,
+            "SELECT rating, topics_learned FROM students WHERE student_id = '$studentId'");
+
+        $topicsAssoc = mysqli_fetch_assoc($topicsLearnedQuery);
+
+        if($topicsAssoc['topics_learned'] == null){
+            array_push($topicsList, $topicId);
+            $topicsList = json_encode($topicsList, JSON_FORCE_OBJECT);
+
+            $insertTopics = mysqli_query($connection,
+                "UPDATE students SET topics_learned = '$topicsList' WHERE student_id = '$studentId'");
+        }else{
+            $topicsList = json_decode($topicsAssoc['topics_learned'], true);
+            array_push($topicsList, $topicId);
+            $topicsList = json_encode($topicsList, JSON_FORCE_OBJECT);
+
+            $insertTopics = mysqli_query($connection,
+                "UPDATE students SET topics_learned = '$topicsList' WHERE student_id = '$studentId'");
+        }
+
+        $updatedRate = $topicsAssoc['rating'] + 4;
+        $updateRateQuery = mysqli_query($connection,
+            "UPDATE students SET rating = '$updatedRate' WHERE student_id = '$studentId'");
+    
+        // после проверок
+        return true;
     }
 }

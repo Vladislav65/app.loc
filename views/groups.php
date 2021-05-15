@@ -37,6 +37,7 @@
                                     <?php
                                         }
                                     ?>
+                                    <p><a href="viewGroup<?php echo $group['id'] ?>">Просмотр группы</a></p>
                                 </div>
                             <?php
                                 }

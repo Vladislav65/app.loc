@@ -12,11 +12,16 @@
     <?php if(isset($_SESSION['student'])){ ?>
     <?php include SITE_PATH . DS . "components" . DS . "Header.php" ?>
 
-    <h2 style="text-align: center;">Тема:</h2>
-    <div class="topic" style="text-align: center;">
+    <!--<h2 style="text-align: center;">Тема:</h2>-->
+    <div class="topic">
         <div class="topicHeader">
-            <p><?php echo $topic["topic_title"]; ?></p>
+            <h3 style="text-align: center;"><?php echo $topic["topic_title"]; ?></h3>
             <p><?php echo $topic["topic_content"]; ?></p>
+            <?php if($isLearned == true){ ?>
+                <p><a href="learned<?php echo $topic['topic_id'] ?>">Отметить как изученное</a></p>
+            <?php }else{ ?>
+                <p>Изучено</p>
+            <?php }?>
         </div>
     </div>
 

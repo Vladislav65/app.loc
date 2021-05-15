@@ -3,20 +3,19 @@
 include_once SITE_PATH . DS . "models" . DS . "User.php";
 include_once SITE_PATH . DS . "models" . DS . "OfferControl.php";
 include_once SITE_PATH . DS . "models" . DS . "Student.php";
+include_once SITE_PATH . DS . "models" . DS . "Mentors.php";
 
 /* Класс-контроллер аккаунта студента */
 
 class StudentController{
 
     public function actionIndex(){
-
         require_once SITE_PATH . DS . "views" . DS . "student.php";
 
         return true;
     }
 
     public function actionMakeOffer($mentorId){
-
         if(isset($_POST['offer'])){
             $speciality = filter_var(trim($_POST['speciality']), FILTER_SANITIZE_STRING);
             $eDirections = filter_var(trim($_POST['eDirections']), FILTER_SANITIZE_STRING);
@@ -67,14 +66,12 @@ class StudentController{
     }
 
     public function actionOfferResult(){
-        
         require_once SITE_PATH . DS . "views" . DS . "offerResult.php";
 
         return true;
     }
 
     public static function makeReject($result){
-
         $errorStack = [];       
         foreach($result as $error){
             $errorStack[] = $error[2];
@@ -103,20 +100,17 @@ class StudentController{
     }
 
     public static function makeUnderConsideration($result){
-        
         $_SESSION['underConsideration'] = "Указанная в заявке дополнительная специальность
         не соответствует дополнительной специальности ментора. Заявка передана ментору для
         определения статуса.";
     }
 
     public static function makeAccept($result){
-
         $_SESSION['accepted'] = "Заявка успешно сформирована. Ориентировочная стоимость месяца
         менторства составит порядка" . " $result[3]" . "$";
     }
 
     public static function actionInvitations(){
-
         $studentId = $_SESSION['student']['student_id'];
 
         $invitationsList = Student::getInvitations($studentId);
@@ -158,5 +152,24 @@ class StudentController{
         require_once SITE_PATH . DS . "views" . DS . "groups.php";
 
         return true;
+    }
+
+    public function actionViewGroup($groupId){
+        $group = Mentors::getGroupById($groupId);
+        
+        require_once SITE_PATH . DS . "views" . DS . "viewGroup.php";
+
+        return true;
+    }
+
+    public function actionLearned($topicId){
+        $studentId = $_SESSION['student']['student_id'];
+
+        $flag = Student::topicLearned($topicId, $studentId);
+
+        if($flag === true){
+            
+            exit("<meta http-equiv='refresh' content='0; url= topic{$topicId}'>");
+        }
     }
 }

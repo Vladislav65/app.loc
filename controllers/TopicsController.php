@@ -7,6 +7,8 @@ include_once SITE_PATH . DS . "models" . DS . "Topics.php";
 class TopicsController{
 
     public static function actionView($id){
+        $studentId = $_SESSION['student']['student_id'];
+        $isLearned = Topics::isLearned($id, $studentId);
         $topic = Topics::getTopic($id);
 
         require_once SITE_PATH . DS . "views" . DS . "topic.php";

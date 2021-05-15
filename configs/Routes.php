@@ -48,6 +48,8 @@ return array(
     "makeOffer([0-9]+)" => "student/makeOffer/$1",
     "offerResult" => "student/offerResult",
     "viewInvitations" => "student/invitations",
+    "viewGroup([0-9]+)" => "student/viewGroup/$1",
     "userL" => "user/logout",
-    "userLA" => "user/logoutAdmin"
+    "userLA" => "user/logoutAdmin",
+    "learned([0-9]+)" => "student/learned/$1"
 );

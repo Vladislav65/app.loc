@@ -11,6 +11,7 @@ class Topics{
                                                   WHERE topic_id = '$id'");
         
         $topic = mysqli_fetch_assoc($topicQuery);
+        $topic['topic_content'] = html_entity_decode($topic['topic_content']);
 
         return $topic;
     }
@@ -109,5 +110,26 @@ class Topics{
     
         // после проверок
         return true;
+    }
+
+    public static function isLearned($topicId, $studentId){
+        $flag = false;
+        $connection = Db::getConnection();
+
+        $isLearnedQuery = mysqli_query($connection,
+            "SELECT topics_learned FROM students WHERE student_id = '$studentId'");
+
+        $isLearnedAssoc = mysqli_fetch_assoc($isLearnedQuery);
+        
+        if($isLearnedAssoc['topics_learned'] == null){
+            return true;
+        }else{
+            $topicsList = json_decode($isLearnedAssoc['topics_learned'], true);
+            if(in_array($topicId, $topicsList)){
+                return false;
+            }else{
+                return true;
+            }
+        }
     }
 }

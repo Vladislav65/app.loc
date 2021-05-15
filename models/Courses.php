@@ -2,8 +2,6 @@
 
 class Courses{
 
-    // !! РАЗОБРАТЬСЯ, КАК ПРОПИСАТЬ ПРИСВАИВАНИЕ CONNECTION 1 РАЗ, А НЕ В КАЖДОЙ Ф-ЦИИ
-
     public static function getCourseItemById($id){
 
         $connection = Db::getConnection();
@@ -30,23 +28,24 @@ class Courses{
     }
 
     public static function getTopics($id){
-        
-        $connection = Db::getConnection();
-
         $topics = [];
-        $topicsQuery = mysqli_query($connection, "SELECT * FROM topics WHERE course_id = '$id'");
+        $connection = Db::getConnection();
+        $topicsIdsQuery = mysqli_query($connection, "SELECT topics FROM courses WHERE course_id = '$id'");
         
-        while($topicsBuf = mysqli_fetch_assoc($topicsQuery)){
-            $topics[] = $topicsBuf;
+        $topicsIdsAssoc = mysqli_fetch_assoc($topicsIdsQuery);
+        $topicsIds = explode(',', $topicsIdsAssoc['topics']);
+
+        for($i = 0; $i < sizeof($topicsIds); $i++){
+            $topicsGetQuery = mysqli_query($connection,
+                "SELECT topic_id, topic_img, topic_title FROM topics WHERE topic_id = '{$topicsIds[$i]}'");
+
+            $topics[] = mysqli_fetch_assoc($topicsGetQuery);
         }
 
         return $topics;
     }
 
     public static function courseStart($courseId, $studentId){
-
-        // ! Привести эту функцию в порядок
-
         $connection = Db::getConnection();
 
         // Опробовать вариант получить название курса, вместо id
@@ -106,9 +105,9 @@ class Courses{
                                                                     '$courseDescr'
                                                                     )");
             $courseAddResult = "Курс был успешно добавлен";
-        }else{
+        }/*else{
             $courseAddResult = "Курс с таким названием уже существует";
-        }
+        }*/
 
         return $courseAddResult;
     }

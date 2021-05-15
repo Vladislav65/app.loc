@@ -332,11 +332,14 @@ class Mentors{
             $selectCourseQuery = mysqli_query($connection,
             "SELECT courses FROM groups WHERE id = '$groupId'");
 
-            $coursesAssoc = mysqli_fetch_assoc($insertCourseQuery);
+            $coursesAssoc = mysqli_fetch_assoc($selectCourseQuery);
+            /*echo "<pre>";
+            var_dump($coursesAssoc);
+            echo "</pre>";*/
             $courses = $coursesAssoc['courses'];
 
             $courses = $courses . "," . $lastCourseAssoc['course_id'];
-
+            
             $insertCourseQuery = mysqli_query($connection,
             "UPDATE groups SET courses = '$courses' WHERE id = '$groupId'");
         }
