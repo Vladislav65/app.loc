@@ -14,24 +14,23 @@
 
     <div class="testSection">
         <div class="test">
-            <h4><?php echo $test["test_title"] ?></h4>
+            <h4><?php echo $test["title"] ?></h4>
             <form action="#" method="POST">
                 <?php
-                for($i = 0; $i < sizeof($test["content"]); $i++){
-                    echo "<label>" . $test["content"][$i] . "</label> ";
-                    if($i == 0 || $i == 5 || $i == 10){
-                        echo "<br>";
-                    }else if($i >= 1 && $i <= 4){
+                    foreach($test['content'] as $key => $value){
+                ?>
+                    <label><?php  ?></label> <br>
+                    <?php
+                        echo $value[0]; 
                         echo "<input type=\"radio\" name=\"question1\"
-                              value=\"" . $test["content"][$i] . "\" > <br>";
-                    }else if($i >= 6 && $i <= 9){
+                        value=\"" . $value[0] . "\" > <br>";
+
+                        echo $value[1]; 
                         echo "<input type=\"radio\" name=\"question2\"
-                              value=\"" . $test["content"][$i] . "\" > <br>";
-                    }else if($i >= 11 && $i <= 14){
-                        echo "<input type=\"radio\" name=\"question3\"
-                              value=\"" . $test["content"][$i] . "\" > <br>";
+                        value=\"" . $value[1] . "\" > <br>";
+                    ?>
+                <?php
                     }
-                }
                 ?>
                 <input class="btn" type="submit" name="dotest">
             </form>

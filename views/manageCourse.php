@@ -32,7 +32,7 @@
         </div>
 
         <h4 style="margin-top: 50px;">Тесты курса:</h4>
-        <p><a href="testAdd<?php echo $course["course_id"] ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Добавить тест</p>
+        <p><a href="testAdd<?php echo $courseId ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Добавить тест</p>
         <div class="courseTests">
         <?php
             foreach($tests as $test){

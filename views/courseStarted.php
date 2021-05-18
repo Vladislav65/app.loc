@@ -38,9 +38,9 @@
             ?>
                 <div class="courseTest">
                     <div>
-                        <h5><?php echo $test["test_title"]; ?></h5>
-                        <p><?php echo $test["test_id"]; ?></p>
-                        <a href="dotest<?php echo $test["test_id"]; ?>">Пройти тест</a>
+                        <h5><?php echo $test["title"]; ?></h5>
+                        <p><?php echo $test["id"]; ?></p>
+                        <a href="dotest<?php echo $test["id"]; ?>">Пройти тест</a>
                     </div>
                 </div>
             <?php

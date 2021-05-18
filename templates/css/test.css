@@ -1,3 +1,8 @@
 .test{
     text-align: center;
 }
+
+.question{
+    border: 3px solid red;
+    margin-bottom: 15px;
+}

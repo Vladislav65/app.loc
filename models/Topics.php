@@ -29,11 +29,18 @@ class Topics{
         }else{
             $lastInsertId = $lastInsertIdAssoc['topic_id'] + 1;
         }
-        
+       
         if(!(empty($_FILES['topicImage']['tmp_name']))){
             $type = explode('/', $_FILES['topicImage']['type']);
             $path = 'templates/images/topics/' . $lastInsertId . '.' . $type[1];
             move_uploaded_file($_FILES['topicImage']['tmp_name'], $path);
+        }
+
+        if(!(empty($_FILES['file']['tmp_name']))){
+            $type = explode('/', $_FILES['file']['type']);
+            $extension = $type[1];
+            $path = 'templates/files/topics/' . $lastInsertId . '.' . $type[1];
+            move_uploaded_file($_FILES['file']['tmp_name'], $path);
         }
 
         $saveTopicQuery = mysqli_query($connection,

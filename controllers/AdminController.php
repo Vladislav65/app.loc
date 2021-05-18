@@ -58,17 +58,6 @@ class AdminController{
         return true;
     }
 
-    public function actionTestAdd($courseId){
-        $test = $_POST;
-
-        if(isset($_POST['test'])){
-            $result = Admin::createTest($test, $courseId);    
-        }
-
-        require_once SITE_PATH . DS . "views" . DS . "createTest.php";
-        return true;
-    }
-
     public function actionCourseAdmin($courseId){
         $studentId = 0;
 

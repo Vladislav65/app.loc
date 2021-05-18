@@ -27,6 +27,8 @@
             <input type="text" name="topicTitle"> <br> <br>
             <label>Добавьте фото темы:</label> <br>
             <input type="file" name="topicImage"> <br> <br>
+            <label>Вместо написания статьи Вы можете прикрепить файл с темой:</label> <br>
+            <input type="file" name="file"> <br> <br>
             <label>Напечатайте содержимое темы:</label> <br>
             <textarea id="addTopic" name="topic" rows="20" cols="65" style="resize: none; text-align: center;"></textarea><br>
             <input class="btn" type="submit" name="topicAdd" value="Добавить тему"> 

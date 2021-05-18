@@ -38,7 +38,7 @@ return array(
     "graph" => "admin/graph",
     "savefile" => "admin/saveFile",
     "addStudent" => "admin/addStudent",
-    "testAdd([0-9]+)" => "admin/testAdd/$1",
+    "testAdd([0-9]+)" => "tests/testAdd/$1",
     "dotest([0-9]+)" => "tests/doTest/$1",
     "testResults" => "tests/getResult/$1",
     "student" => "student/index",

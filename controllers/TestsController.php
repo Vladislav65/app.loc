@@ -8,17 +8,17 @@ include_once SITE_PATH . DS . "models" . DS . "Admin.php";
 class TestsController{
 
     public function actionDoTest($testId){
+        $test = Tests::getTest($testId);
 
-        $test = Admin::getTest($testId);
+        /*echo "<pre>";
+        var_dump($test['content']);
+        echo "</pre>";*/
+
         
-        if(isset($_POST['dotest'])){
-            $answer["answer1"] = $_POST['question1']; 
-            $answer["answer2"] = $_POST['question2'];
-            $answer["answer3"] = $_POST['question3'];
 
-            $_SESSION['result'] = Admin::testAnalysis($testId, $answer);
-            exit("<meta http-equiv='refresh' content='0; url= testResults'>");
-        }
+        /*if(isset($_POST['dotest'])){
+            
+        }*/
 
         require_once SITE_PATH . DS . "views" . DS . "test.php";
 
@@ -28,6 +28,18 @@ class TestsController{
     public function actionGetResult(){
 
         require_once SITE_PATH . DS . "views" . DS . "testResults.php";
+        return true;
+    }
+
+    public function actionTestAdd($courseId){
+        $test = $_POST;
+        $mentorId = $_SESSION['mentor']['mentor_id'];
+
+        if(isset($_POST['test'])){
+            $result = Tests::createTest($test, $courseId, $mentorId);    
+        }
+
+        require_once SITE_PATH . DS . "views" . DS . "createTest.php";
         return true;
     }
 }
