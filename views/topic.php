@@ -12,10 +12,17 @@
     <?php if(isset($_SESSION['student'])){ ?>
     <?php include SITE_PATH . DS . "components" . DS . "Header.php" ?>
 
-    <!--<h2 style="text-align: center;">Тема:</h2>-->
     <div class="topic">
         <div class="topicHeader">
             <h3 style="text-align: center;"><?php echo $topic["topic_title"]; ?></h3>
+            <?php 
+                if($fileFlag == true){
+            ?>
+                    <h5>Загруженный файл:</h5>
+                    <a href="<?php echo $topic['file'] ?>" target="_blank"><?php echo $fileName ?></a>
+            <?php
+                }
+            ?>
             <p><?php echo $topic["topic_content"]; ?></p>
             <?php if($isLearned == true){ ?>
                 <p><a href="learned<?php echo $topic['topic_id'] ?>">Отметить как изученное</a></p>

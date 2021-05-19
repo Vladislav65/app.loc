@@ -18,6 +18,7 @@ class Topics{
 
     public static function topicAdd($topic, $courseId, $mentorId){
         $connection = Db::getConnection();
+        $filePath = null;
         $lastInsertId = '';
 
         $lastIdQuery = mysqli_query($connection,
@@ -39,13 +40,13 @@ class Topics{
         if(!(empty($_FILES['file']['tmp_name']))){
             $type = explode('/', $_FILES['file']['type']);
             $extension = $type[1];
-            $path = 'templates/files/topics/' . $lastInsertId . '.' . $type[1];
-            move_uploaded_file($_FILES['file']['tmp_name'], $path);
+            $filePath = 'templates/files/topics/' . $lastInsertId . '.' . $type[1];
+            move_uploaded_file($_FILES['file']['tmp_name'], $filePath);
         }
 
         $saveTopicQuery = mysqli_query($connection,
-            "INSERT INTO topics(topic_title, topic_img, topic_content)
-            VALUES('{$topic['topicTitle']}', '{$path}', '{$topic['topic']}')");
+            "INSERT INTO topics(topic_title, topic_img, topic_content, file)
+                VALUES('{$topic['topicTitle']}', '{$path}', '{$topic['topic']}', '{$filePath}')");
 
         $selectTopicsCourseQuery = mysqli_query($connection,
             "SELECT topics FROM courses WHERE course_id = '$courseId'");

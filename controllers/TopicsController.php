@@ -7,9 +7,16 @@ include_once SITE_PATH . DS . "models" . DS . "Topics.php";
 class TopicsController{
 
     public static function actionView($id){
+        $fileFlag = false;
         $studentId = $_SESSION['student']['student_id'];
         $isLearned = Topics::isLearned($id, $studentId);
         $topic = Topics::getTopic($id);
+
+        if($topic['file'] != null){
+            $fileFlag = true;
+            $fileExploded = explode('/', $topic['file']);
+            $fileName = $fileExploded[3];
+        }
 
         require_once SITE_PATH . DS . "views" . DS . "topic.php";
         
