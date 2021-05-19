@@ -227,4 +227,38 @@ class MentorsController{
 
         return true;
     }
+
+    public function actionSendEmail($comparedId){
+        $comparedId = explode(';', $comparedId);
+        $studentId = $comparedId[1];
+        $groupId = $comparedId[0];
+        $messageType = 'email';
+        $mentorId = $_SESSION['mentor']['mentor_id'];
+
+        if(isset($_POST['emailBtn'])){
+            $email = $_POST;
+
+            $flag = Mentors::sendEmail($studentId, $mentorId, $email);
+            
+            if($flag == true){
+                exit("<meta http-equiv='refresh' content='0; url=manageGroup{$groupId}'>");
+            }
+        }
+        
+        require_once SITE_PATH . DS . "views" . DS . "sendMessage.php";
+
+        return true;
+    }
+
+    public function actionChatMessage($studentId){
+        $messageType = 'chat';
+
+        if(isset($_POST['chatBtn'])){
+            echo "chat";
+        }
+        
+        require_once SITE_PATH . DS . "views" . DS . "sendMessage.php";
+
+        return true;
+    }
 }

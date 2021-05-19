@@ -30,6 +30,8 @@ return array(
     "mentorCourseAdd" => "mentors/courseAdd/$1",
     "updateCourse([0-9]+)" => "mentors/updateCourse/$1",
     "manageCourse([0-9]+)" => "mentors/manageCourse/$1",
+    "sendEmail([0-9]+)" => "mentors/sendEmail/$1",
+    "chatMessage([0-9]+)" => "mentors/chatMessage/$1",
     "coursecontrol" => "admin/coursesControl",
     "usercontrol" => "admin/userControl",
     "courseAdmin([0-9]+)" => "admin/courseAdmin/$1",

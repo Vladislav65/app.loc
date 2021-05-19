@@ -1,7 +1,12 @@
 <?php
 
-include_once SITE_PATH . DS . "models" . DS . "Topics.php";;
-/* Разобраться, как записать $connection 1 раз (возм. конструктор) */
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+include_once SITE_PATH . DS . "models" . DS . "Topics.php";
+require SITE_PATH . DS . "vendor" . DS . "phpmailer" . DS . "phpmailer" . DS . "src" . DS . "PHPMailer.php";
+require SITE_PATH . DS . "vendor" . DS . "phpmailer" . DS . "phpmailer" . DS . "src" . DS . "SMTP.php";
+require SITE_PATH . DS . "vendor" . DS . "phpmailer" . DS . "phpmailer" . DS . "src" . DS . "Exception.php";
 
 class Mentors{
 
@@ -452,13 +457,92 @@ class Mentors{
         }
         
         $updateCourseQuery = mysqli_query($connection,
-        "UPDATE courses SET course_name = '{$updateData['courseName']}',
-                            course_category = '{$updateData['courseCategory']}',
-                            course_descr = '{$updateData['descr']}',
-                            course_img = '$courseImg',
-                            course_length = {$updateData['length']} WHERE course_id = '$courseId'");
+            "UPDATE courses SET course_name = '{$updateData['courseName']}',
+                                course_category = '{$updateData['courseCategory']}',
+                                course_descr = '{$updateData['descr']}',
+                                course_img = '$courseImg',
+                                course_length = {$updateData['length']} WHERE course_id = '$courseId'");
     
         // после проверок
         return true;
+    }
+
+    public static function sendEmail($studentId, $mentorId, $email){
+        $connection = Db::getConnection();
+        $emailGetQuery = mysqli_query($connection,
+            "SELECT student_email FROM students WHERE student_id = '$studentId'");
+
+        $emailAssoc = mysqli_fetch_assoc($emailGetQuery);
+        $emailAddress = $emailAssoc['student_email'];
+        
+        date_default_timezone_set('Europe/Moscow');
+        $result = false;
+        $emailFlag = false;
+
+        $mail = new PHPMailer();
+        $mail->setLanguage('ru', '/vendor/phpmailer/language/');
+
+        try {
+            //Tell PHPMailer to use SMTP
+            $mail->isSMTP();
+            //Enable SMTP debugging
+            //SMTP::DEBUG_OFF = off (for production use)
+            //SMTP::DEBUG_CLIENT = client messages
+            //SMTP::DEBUG_SERVER = client and server messages
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->CharSet = "utf-8";
+
+            //Set the hostname of the mail server
+            $mail->Host = 'smtp.gmail.com';
+            //Use `$mail->Host = gethostbyname('smtp.gmail.com');`
+            //if your network does not support SMTP over IPv6,
+            //though this may cause issues with TLS
+
+            //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+            $mail->Port = 587;
+
+            //Set the encryption mechanism to use - STARTTLS or SMTPS
+            $mail->SMTPOptions = [
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                ]
+            ];
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+
+            //Whether to use SMTP authentication
+            $mail->SMTPAuth = true;
+
+            //Username to use for SMTP authentication - use full email address for gmail
+            $mail->Username = 'phpmailer1999@gmail.com';
+
+            //Password to use for SMTP authentication
+            $mail->Password = 'football1999';
+
+            //Set who the message is to be sent from
+            $mail->setFrom('phpmailer1999@gmail.com', 'Ваш ментор');
+
+            //Set who the message is to be sent to
+            $emailFlag = $mail->addAddress($emailAddress, 'Студенту');
+            
+            //Set the subject line
+            $mail->Subject = $email['messageTitle'];
+
+            //Read an HTML message body from an external file, convert referenced images to embedded,
+            //convert HTML into a basic plain-text alternative body
+            $mail->Body = $email['message'];
+            $mail->send();
+            $result = true;
+        } catch (Exception $e) {
+            echo "Сообщение не отправлено. Ошибка: {$mail->ErrorInfo}";
+        }
+
+        if($emailFlag == false){
+            $result = 'Не существует данного Email';
+        }
+
+        // после проверок
+        return $result;
     }
 }
