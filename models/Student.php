@@ -155,4 +155,38 @@ class Student{
         // после проверок
         return true;
     }
+
+    public static function getAvailableGroups($studentId){
+        $groupsList = [];
+
+        $connection = Db::getConnection();
+        $groupsGetQuery = mysqli_query($connection,
+            "SELECT * FROM groups"); //  WHERE status = 'opened'
+
+        while($groupsAssoc = mysqli_fetch_assoc($groupsGetQuery)){
+            $groupsList[] = $groupsAssoc;
+        }
+
+        if(!(empty($groupsList))){
+            foreach($groupsList as $key => &$value){
+                $explodedStudents = explode(',', $value['students']);
+                for($i = 0; $i < sizeof($explodedStudents); $i++){
+                    if($studentId == $explodedStudents[$i]){
+                        $value['isMember'] = true;
+                    }else{
+                        $value['isMember'] = false;
+                    }
+                }
+            }
+        }else{
+            return false;
+        }
+
+        return $groupsList;         
+    }
+
+    public static function enterGroup($studentId, $groupId){
+        
+
+    }
 }

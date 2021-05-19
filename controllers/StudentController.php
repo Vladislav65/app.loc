@@ -168,8 +168,22 @@ class StudentController{
         $flag = Student::topicLearned($topicId, $studentId);
 
         if($flag === true){
-            
             exit("<meta http-equiv='refresh' content='0; url= topic{$topicId}'>");
         }
+    }
+
+    public function actionGroupsAvailable(){
+        $studentId = $_SESSION['student']['student_id'];
+        $groupsList = Student::getAvailableGroups($studentId);
+
+        require_once SITE_PATH . DS . "views" . DS . "allGroups.php";
+
+        return true;
+    }
+
+    public function actionEnterGroup($groupId){
+        $studentId = $_SESSION['student']['student_id'];
+
+        Student::enterGroup($studentId, $groupId);
     }
 }

@@ -21,11 +21,11 @@
         <p>Логин: <?php echo $mentor["mentor_login"]; ?> </p>
         <p>Основная специальность: <?php echo $mentor["speciality"]; ?> </p>
         <p>Дополнительная специальность: <?php echo $mentor["add_speciality"]; ?> </p>
-        <p>Опыт изучения дисциплины: <?php echo $mentor["experience"]; ?> </p>
+        <p>Опыт изучения дисциплины: <?php echo $mentor["experience"]; ?> лет</p>
         <p>Рейтинг: <?php echo $mentor["rating"]; ?> </p>
         <p>Формат занятий: <?php echo $mentor["format"]; ?> </p>
         <p>Дни занятий: <?php echo $mentor["days"]; ?> </p>
-        <p>Возраст: <?php echo $mentor["age"]; ?> </p>
+        <p>Возраст: <?php echo $mentor["age"]; ?> лет</p>
         <p>О себе: <?php echo $mentor["about"]; ?> </p>
         <p><a href="makeOffer<?php echo $mentor["mentor_id"] ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Оставить заявку на запись</p>
     </div>

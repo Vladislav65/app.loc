@@ -18,7 +18,8 @@
                 <p><a href="">Сбытовая логистика. Основы</a></p>
 		<p><a href="">Модель мультипликатора-акселератора</a></p>-->
                 <a href="viewInvitations">Приглашения</a> <br>
-                <a href="groups">Мои группы</a>
+                <a href="groups">Мои группы</a> <br>
+                <a href="groupsAvailable">Доступные группы</a>
             </div>
 
             <div class="account">

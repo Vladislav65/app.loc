@@ -29,12 +29,6 @@
                                 </div>
                             </div>
                             <p><?php echo $course["course_descr"]; ?></p> 
-
-                            <?php if(User::isLogged() == true){ ?>
-                            <a href="courses<?php echo $course["course_id"]; ?>">Подробнее</a>
-                            <?php
-                            }
-                            ?>
                         </div>
                     <?php
                         }

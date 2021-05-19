@@ -29,8 +29,6 @@
                     <img src="templates/images/authScreen.jpg" class="authScreen"> <br>
                     Аккаунт пользователя выглядит следующим образом: <img class="studentScreen" src="templates/images/studentScreen.jpg" > <br>
                     После входа в аккаунт Вам доступны: курсы, которые Вы можете брать на изучение. В курсах содержатся темы занятий и тесты.
-                    
-
                     </p>
                 </div>
             </div>

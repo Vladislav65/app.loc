@@ -45,6 +45,8 @@ return array(
     "join([0-9]+)" => "student/join/$1",
     "decline([0-9]+)" => "student/decline/$1",
     "groups" => "student/groups",
+    "groupsAvailable" => "student/viewGroups",
+    "enterGroup" => "student/enterGroup/$1",
     "makeOffer([0-9]+)" => "student/makeOffer/$1",
     "offerResult" => "student/offerResult",
     "viewInvitations" => "student/invitations",

@@ -28,6 +28,14 @@
                         echo $value[1]; 
                         echo "<input type=\"radio\" name=\"question2\"
                         value=\"" . $value[1] . "\" > <br>";
+
+                        echo $value[2]; 
+                        echo "<input type=\"radio\" name=\"question3\"
+                        value=\"" . $value[2] . "\" > <br>";
+
+                        echo $value[3]; 
+                        echo "<input type=\"radio\" name=\"question3\"
+                        value=\"" . $value[3] . "\" > <br>";
                     ?>
                 <?php
                     }

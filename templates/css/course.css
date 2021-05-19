@@ -13,3 +13,9 @@ footer{
     position: absolute;
     margin-top: 10%;
 }
+
+.groupHeader{
+    text-align: center;
+    margin-top: 100px;
+    border: 3px solid blue;
+}

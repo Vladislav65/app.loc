@@ -5,7 +5,6 @@
 class Admin{
 
     public static function statistics(){
-
         $connection = Db::getConnection();
 
         $statistics = [];
@@ -52,7 +51,7 @@ class Admin{
         }
 
         if(!move_uploaded_file($_FILES['topicImage']['tmp_name'], $topicImgPath)){
-                $_SESSION['avatarError'] = "Не удалось загрузить фото. Попробуйте загрузить его из профиля";
+            $_SESSION['avatarError'] = "Не удалось загрузить фото. Попробуйте загрузить его из профиля";
         }
 
         $topicAddQuery = mysqli_query($connection, "INSERT INTO topics (
@@ -89,7 +88,6 @@ class Admin{
     }
 
     public static function saveToFile(){
-
         $statistics = [];
         $statisticsBuf = self::statistics();
         $filepath = SITE_PATH . DS . "templates" . DS . "files" . DS . "statistics.txt";
@@ -122,7 +120,6 @@ class Admin{
     }
 
     public static function userControl(){
-
         $connection = Db::getConnection();
         $users = array(
             "students" => [],
@@ -143,7 +140,6 @@ class Admin{
     }
 
     public static function graph(){
-
         $connection = Db::getConnection();
         $information = [];
 
@@ -168,7 +164,6 @@ class Admin{
     }
 
     public static function deleteCourse($id){
-
         $connection = Db::getConnection();
         $courseDelQuery = mysqli_query($connection, "DELETE FROM courses WHERE course_id = '$id'");
 
@@ -176,7 +171,6 @@ class Admin{
     }
 
     public static function deleteStudent($id){
-
         $connection = Db::getConnection();
         $studentDelQuery = mysqli_query($connection, "DELETE FROM students WHERE student_id = '$id'");
 
@@ -184,7 +178,6 @@ class Admin{
     }
 
     public static function deleteMentor($id){
-
         $connection = Db::getConnection();
         $mentorDelQuery = mysqli_query($connection, "DELETE FROM mentors WHERE mentor_id = '$id'");
 
