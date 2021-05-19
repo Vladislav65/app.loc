@@ -166,6 +166,7 @@ class Student{
         while($groupsAssoc = mysqli_fetch_assoc($groupsGetQuery)){
             $groupsList[] = $groupsAssoc;
         }
+        
 
         if(!(empty($groupsList))){
             foreach($groupsList as $key => &$value){
