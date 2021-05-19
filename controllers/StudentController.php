@@ -184,6 +184,9 @@ class StudentController{
     public function actionEnterGroup($groupId){
         $studentId = $_SESSION['student']['student_id'];
 
-        Student::enterGroup($studentId, $groupId);
+        $flag = Student::enterGroup($studentId, $groupId);
+        if($flag === true){
+            exit("<meta http-equiv='refresh' content='0; url= groupsAvailable'>");
+        }
     }
 }

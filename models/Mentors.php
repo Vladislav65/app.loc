@@ -415,7 +415,7 @@ class Mentors{
         }
 
         $updateCoursesQuery = mysqli_query($connection,
-        "UPDATE groups SET courses = '$courses' WHERE id = '$groupId'");
+            "UPDATE groups SET courses = '$courses' WHERE id = '$groupId'");
 
         // после проверок
         return true;

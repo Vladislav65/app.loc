@@ -161,12 +161,11 @@ class Student{
 
         $connection = Db::getConnection();
         $groupsGetQuery = mysqli_query($connection,
-            "SELECT * FROM groups"); //  WHERE status = 'opened'
+            "SELECT * FROM groups WHERE status = 'opened'"); 
 
         while($groupsAssoc = mysqli_fetch_assoc($groupsGetQuery)){
             $groupsList[] = $groupsAssoc;
         }
-        
 
         if(!(empty($groupsList))){
             foreach($groupsList as $key => &$value){
@@ -187,7 +186,23 @@ class Student{
     }
 
     public static function enterGroup($studentId, $groupId){
-        
+        $connection = Db::getConnection();
+        $studentsGetQuery = mysqli_query($connection,
+            "SELECT students FROM groups WHERE id = '$groupId'"); 
 
+        $studentsGetAssoc = mysqli_fetch_assoc($studentsGetQuery);
+
+        if($studentsGetAssoc['students'] == null){
+            $studentsList = $studentId;
+            $studentsUpdateQuery = mysqli_query($connection,
+                "UPDATE groups SET students = '$studentsList' WHERE id = '$groupId'");
+        }else{
+            $studentsList = $studentsGetAssoc['students'] . ',' . $studentId;
+            $studentsUpdateQuery = mysqli_query($connection,
+                "UPDATE groups SET students = '$studentsList' WHERE id = '$groupId'");
+        }
+
+        // после проверок
+        return true;
     }
 }

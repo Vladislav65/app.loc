@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../templates/css/courses.css">
 </head>
 <body>
-    <?php include SITE_PATH . DS . "components" . DS . "mentorHeader.php" ?>
+    <?php include SITE_PATH . DS . "components" . DS . "Header.php" ?>
 
     <div class="coursesSection">
         <div class="container">
@@ -32,7 +32,17 @@
                                 <div class="groupTitle">
                                     <h4><?php echo $group['name']; ?></h4>
                                     <p>Руководитель: <a href=mentors<?php echo (int) $group['owner']; ?>><?php echo $group['owner_name'] . " " . $group['owner_surname'] ?></a></p>
-                                    <p>Дисциплина: <?php echo $group['speciality'] ?></p>
+                                    <?php
+                                        if($group['speciality'] == 'logistics'){
+                                    ?>
+                                            <p>Дисциплина: Логистика</p>
+                                    <?php
+                                        }else{
+                                    ?>
+                                            <p>Дисциплина: Экономика</p>
+                                    <?php
+                                        }
+                                    ?>
                                     <p>Специализация: <?php echo $group['add_speciality'] ?></p>
                                     <?php
                                         if($group['isMember'] == true){
@@ -47,7 +57,6 @@
                                     ?>
                                 </div>
                             </div>
-                            <p><?php echo $course["course_descr"]; ?></p> 
                         </div>
                     <?php
                         }

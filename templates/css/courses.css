@@ -17,3 +17,8 @@
 .courseHeader{
     display: inline-flex;
 }
+
+.group{
+    border: 3px solid red;
+    margin-bottom: 20px;
+}
