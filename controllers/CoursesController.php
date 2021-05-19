@@ -28,6 +28,13 @@ class CoursesController{
         $studentId = $_SESSION['student']['student_id'];
         $topics = Courses::getTopics($courseId);
         $tests = Tests::getTests($courseId);
+        $topicsNum = sizeof($topics);
+
+        for($i = 0; $i < $topicsNum; $i++){
+            if($topics[$i] == null){
+                unset($topics[$i]);
+            }
+        }
 
         Courses::courseStart($courseId, $studentId);
 

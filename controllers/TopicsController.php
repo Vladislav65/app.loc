@@ -35,7 +35,7 @@ class TopicsController{
             $result = Topics::topicAdd($topic, $courseId, $mentorId);
             // после проверок
 
-            //exit("<meta http-equiv='refresh' content='0; url=manageCourse{$courseId}'>");
+            exit("<meta http-equiv='refresh' content='0; url=manageCourse{$courseId}'>");
         }
         
         require_once SITE_PATH . DS . "views" . DS . "topicAdd.php";

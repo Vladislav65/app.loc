@@ -36,7 +36,7 @@
                                         }
                                     ?>
                             <p>Ваша дополнительная специальность: <?php echo $_SESSION['mentor']['add_speciality'] ?></p> <br>
-                            <p>Ваш опыт преподавания: <?php echo $_SESSION['mentor']['experience'] ?></p> <br>
+                            <p>Ваш опыт преподавания: <?php echo $_SESSION['mentor']['experience'] ?> лет</p> <br>
                             <p>Текущий рейтинг: <?php echo $_SESSION['mentor']['rating'] ?></p> <br>
                             <p>Ваша учёная степень: <?php echo $_SESSION['mentor']['graduation'] ?></p> <br>
                             <p>Формат занятий: <?php echo $_SESSION['mentor']['format'] ?></p> <br>

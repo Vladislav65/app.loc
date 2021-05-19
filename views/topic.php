@@ -19,6 +19,7 @@
                 if($fileFlag == true){
             ?>
                     <h5>Загруженный файл:</h5>
+                    <img src="/templates/images/pdfIcon.jpg" style="width: 30px; height: 30px">
                     <a href="<?php echo $topic['file'] ?>" target="_blank"><?php echo $fileName ?></a>
             <?php
                 }
