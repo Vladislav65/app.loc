@@ -131,10 +131,6 @@ class Tests{
     }
 
     public static function createSertificate($sertificateData){
-        /*echo "<pre>";
-        var_dump($sertificateData);
-        echo "</pre>";*/
-        
         require('vendor\tpdf\tfpdf.php');
 
         $pdf = new tFPDF();
