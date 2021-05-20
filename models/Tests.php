@@ -131,9 +131,9 @@ class Tests{
     }
 
     public static function createSertificate($sertificateData){
-        echo "<pre>";
+        /*echo "<pre>";
         var_dump($sertificateData);
-        echo "</pre>";
+        echo "</pre>";*/
         
         require('vendor\tpdf\tfpdf.php');
 
@@ -142,21 +142,38 @@ class Tests{
 
         // Add a Unicode font (uses UTF-8)
         $pdf->AddFont('DejaVu','','DejaVuSansCondensed.ttf',true);
-        $pdf->SetFont('DejaVu','', 25);
+        $pdf->SetFont('DejaVu','', 30);
 
         // Load a UTF-8 string from a file and print it
         $txt = 'Сертификат';
-        $result = 'Результат';
-        $pdf->Write(8, $txt);
+        $pdf->Ln(10);
+        $result = 'Об успешном окончании курса на портале';
+        $pdf->Write(5, $txt);
+        $pdf->SetFont('Dejavu','', 14);
+        $pdf->Ln(10);
+        $pdf->Write(5, $result);
 
         // Select a standard font (uses windows-1252)
         $pdf->SetFont('Dejavu','', 14);
         $pdf->Ln(10);
-        $pdf->Write(5, $result);
+        $pdf->Write(5, "Выдан студенту: " . $sertificateData['student_first_name'] . " " . $sertificateData['student_surname']);
         $pdf->Ln(10);
-        $pdf->Write(5, 'Курс');
+        $pdf->Write(5, "Логин студента: " . $sertificateData['student_login']);
+        $pdf->Ln(10);
+        $pdf->Write(5, "Название курса: " . $sertificateData['course_name']);
+        $pdf->Ln(10);
+        $pdf->Write(5, "Дисциплина курса: " . $sertificateData['course_category']);
+        $pdf->Ln(10);
+        $pdf->Write(5, "Длительность курса (в часах): " . $sertificateData['course_length']);
+        $pdf->Ln(10);
+        $pdf->Write(5, "Описание курса: " . $sertificateData['course_descr']);
+        $pdf->Ln(10);
+        $pdf->Write(5, "Результат итогового теста: " . $sertificateData['result']);
+        $pdf->Ln(10);
+        $pdf->Write(5, "Руководитель: " . $sertificateData['mentor_name'] . " " . $sertificateData['mentor_surname']);
+        $pdf->Ln(10);
+        $pdf->Write(5, "Название учебной группы: " . $sertificateData['group_name']);
 
         $pdf->Output();
-
     }
 }
