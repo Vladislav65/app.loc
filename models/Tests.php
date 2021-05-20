@@ -4,6 +4,8 @@
 
 class Tests{
 
+    public static $groupId;
+
     public static function getTests($courseId){
         $connection = Db::getConnection();
         $tests = [];
@@ -87,6 +89,7 @@ class Tests{
         if($testAssoc['status'] == 'Итоговый'){
             if($result >= 7){
                 $sertificateData = self::getDataForSertificate($studentId, $courseId, $result);
+                
             }
         }
         exit;
@@ -95,15 +98,35 @@ class Tests{
     }
 
     public static function getDataForSertificate($studentId, $courseId, $result){
+        $sertificateData = [];
         $connection = Db::getConnection();
+        $studentGetQuery = mysqli_query($connection,
+            "SELECT student_first_name, student_surname, student_login FROM students WHERE student_id = '$studentId'");
+
+        $studentAssoc = mysqli_fetch_assoc($studentGetQuery);
+        $sertificateData['student_first_name'] = $studentAssoc['student_first_name'];
+        $sertificateData['student_surname'] = $studentAssoc['student_surname'];
+        $sertificateData['student_login'] = $studentAssoc['student_login'];
+        
         $courseGetQuery = mysqli_query($connection,
             "SELECT course_id, course_name, course_category, course_length, course_descr FROM courses WHERE course_id = '$courseId'");
     
         $courseAssoc = mysqli_fetch_assoc($courseGetQuery);
+        $sertificateData['course_name'] = $courseAssoc['course_name'];
+        $sertificateData['course_category'] = $courseAssoc['course_category'];
+        $sertificateData['course_length'] = $courseAssoc['course_length'];
+        $sertificateData['course_descr'] = $courseAssoc['course_descr'];
+        $sertificateData['result'] = $result . ' из 10 баллов';
 
+        $groupId = $_SESSION['group']['id'];
+        $mentorGetQuery = mysqli_query($connection,
+            "SELECT name, owner_name, owner_surname FROM groups WHERE id = '$groupId'");
+    
+        $mentorAssoc = mysqli_fetch_assoc($mentorGetQuery);
+        $sertificateData['mentor_name'] = $mentorAssoc['owner_name'];
+        $sertificateData['mentor_surname'] = $mentorAssoc['owner_surname'];
+        $sertificateData['group_name'] = $mentorAssoc['name'];
         
-        /*echo "<pre>";
-        var_dump($courseAssoc);
-        echo "</pre>";*/
+        return $sertificateData;
     }
 }

@@ -4,6 +4,7 @@ include_once SITE_PATH . DS . "models" . DS . "User.php";
 include_once SITE_PATH . DS . "models" . DS . "OfferControl.php";
 include_once SITE_PATH . DS . "models" . DS . "Student.php";
 include_once SITE_PATH . DS . "models" . DS . "Mentors.php";
+include_once SITE_PATH . DS . "models" . DS . "Tests.php";
 
 /* Класс-контроллер аккаунта студента */
 
@@ -155,6 +156,10 @@ class StudentController{
     }
 
     public function actionViewGroup($groupId){
+        $_SESSION['group'] = [
+            'id' => $groupId
+        ];
+
         $group = Mentors::getGroupById($groupId);
         
         require_once SITE_PATH . DS . "views" . DS . "viewGroup.php";
