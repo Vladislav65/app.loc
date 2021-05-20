@@ -16,7 +16,7 @@ class TestsController{
             unset($test['dotest']);
 
             $result = Tests::handleTest($studentId, $testId, $test);
-            
+            exit("<meta http-equiv='refresh' content='0; url= testResults{$result}'>");
         }
 
         require_once SITE_PATH . DS . "views" . DS . "test.php";
@@ -24,7 +24,7 @@ class TestsController{
         return true;
     }
 
-    public function actionGetResult(){
+    public function actionGetResult($result){
 
         require_once SITE_PATH . DS . "views" . DS . "testResults.php";
 

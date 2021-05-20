@@ -16,8 +16,7 @@
         <h4>Уважаемый <?php echo $_SESSION['student']['student_first_name'] . " " .
                                  $_SESSION['student']['student_surname'] ?></h4>
 
-        <p>Ваш результат: <?php echo $_SESSION['result'] ?> верных ответа из 3</p>
-        <?php unset($_SESSION['result']) ?>
+        <p>Ваш результат: <?php echo $result ?> верных ответа из 10</p>
     </div>
 
     <?php include SITE_PATH . DS . "components" . DS . "Footer.php" ?>
