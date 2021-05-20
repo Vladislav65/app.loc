@@ -134,5 +134,29 @@ class Tests{
         echo "<pre>";
         var_dump($sertificateData);
         echo "</pre>";
+        
+        require('vendor\tpdf\tfpdf.php');
+
+        $pdf = new tFPDF();
+        $pdf->AddPage();
+
+        // Add a Unicode font (uses UTF-8)
+        $pdf->AddFont('DejaVu','','DejaVuSansCondensed.ttf',true);
+        $pdf->SetFont('DejaVu','', 25);
+
+        // Load a UTF-8 string from a file and print it
+        $txt = 'Сертификат';
+        $result = 'Результат';
+        $pdf->Write(8, $txt);
+
+        // Select a standard font (uses windows-1252)
+        $pdf->SetFont('Dejavu','', 14);
+        $pdf->Ln(10);
+        $pdf->Write(5, $result);
+        $pdf->Ln(10);
+        $pdf->Write(5, 'Курс');
+
+        $pdf->Output();
+
     }
 }
