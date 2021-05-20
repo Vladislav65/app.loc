@@ -40,7 +40,7 @@
                     <div>
                         <h5><?php echo $test["title"]; ?></h5>
                         <p><?php echo $test["id"]; ?></p>
-                        <a href="dotest<?php echo $test["id"]; ?>">Пройти тест</a>
+                        <a href="dotest<?php echo $test["id"] . ";". $courseId; ?>">Пройти тест</a>
                     </div>
                 </div>
             <?php

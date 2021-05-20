@@ -19,6 +19,7 @@
                 <?php
                     $var = 0;
                     foreach($test['content'] as $key => $value){
+                        echo '<div class=\'question\'>';
                         echo '<label>' . $key . '</label> <br>';
                     
                         echo $value[0]; 
@@ -36,6 +37,7 @@
                         echo $value[3]; 
                         echo "<input type=\"radio\" name=\"question{$var}\"
                         value=\"4\" > <br>";
+                        echo '</div>';
 
                         $var++;
                     }

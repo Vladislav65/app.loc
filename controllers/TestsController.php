@@ -7,7 +7,11 @@ include_once SITE_PATH . DS . "models" . DS . "Admin.php";
 
 class TestsController{
 
-    public function actionDoTest($testId){
+    public function actionDoTest($comparedId){
+        $comparedId = explode(';', $comparedId);
+        $testId = $comparedId[0];
+        $courseId = $comparedId[1];
+        
         $test = Tests::getTest($testId);
         $studentId = $_SESSION['student']['student_id']; 
 
@@ -15,7 +19,7 @@ class TestsController{
             $test = $_POST;
             unset($test['dotest']);
 
-            $result = Tests::handleTest($studentId, $testId, $test);
+            $result = Tests::handleTest($studentId, $courseId, $testId, $test);
             exit("<meta http-equiv='refresh' content='0; url= testResults{$result}'>");
         }
 

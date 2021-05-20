@@ -50,8 +50,8 @@ class Tests{
         $corrects = json_encode($corrects, JSON_FORCE_OBJECT);
 
         $insertQuestionsQuery = mysqli_query($connection,
-            "INSERT INTO tests(title, questions, answers, course_id)
-                VALUES('$title', '$questions', '$corrects', '$courseId')");
+            "INSERT INTO tests(title, questions, answers, course_id, status)
+                VALUES('$title', '$questions', '$corrects', '$courseId', '{$test['testStatus']}')");
 
         // после проверок
         return true;
@@ -70,7 +70,7 @@ class Tests{
         return $test;
     }
 
-    public static function handleTest($studentId, $testId, $test){
+    public static function handleTest($studentId, $courseId, $testId, $test){
         $wrongs = 0;
         $result = 0;
         $connection = Db::getConnection();
@@ -84,6 +84,26 @@ class Tests{
         $wrongs = sizeof(array_diff_assoc($corrects, $test));
         $result = 10 - $wrongs;
 
+        if($testAssoc['status'] == 'Итоговый'){
+            if($result >= 7){
+                $sertificateData = self::getDataForSertificate($studentId, $courseId, $result);
+            }
+        }
+        exit;
+
         return $result;     
+    }
+
+    public static function getDataForSertificate($studentId, $courseId, $result){
+        $connection = Db::getConnection();
+        $courseGetQuery = mysqli_query($connection,
+            "SELECT course_id, course_name, course_category, course_length, course_descr FROM courses WHERE course_id = '$courseId'");
+    
+        $courseAssoc = mysqli_fetch_assoc($courseGetQuery);
+
+        
+        /*echo "<pre>";
+        var_dump($courseAssoc);
+        echo "</pre>";*/
     }
 }

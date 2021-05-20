@@ -23,11 +23,6 @@
                 <input class="inputs" type="text" name="firstName" required/> <br>
                 <label>Введите фамилию*:</label> <br>
                 <input class="inputs" type="text" name="surname" required> <br>
-                <!--<label>Ваша специализация*:</label> <br>
-                <input type="radio" name="userStatus" value="student" id="userStatus1">
-                <label for="userStatus1">Студент</label>
-                <input type="radio" name="userStatus" value="mentor" id="userStatus2"> 
-                <label for="userStatus2">Ментор</label> <br>-->
                 <label>Введите e-mail:</label> <br>
                 <input class="inputs" type="email" name="email"> <br>
                 <label>Добавьте фото профиля:</label> <br>

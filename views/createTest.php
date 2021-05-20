@@ -13,7 +13,7 @@
     <?php include SITE_PATH . DS . "components" . DS . "mentorHeader.php" ?>
 
     <div>
-        <div class="test">
+        <div class="test" style="text-align: center">
             <h4>Форма добавления теста:</h4>
             <form action="#" method="POST">
                 <label>Введите название теста:</label> <br>
@@ -207,6 +207,12 @@
                         <input type="radio" name="correct10" value="2"> 2
                         <input type="radio" name="correct10" value="3"> 3
                         <input type="radio" name="correct10" value="4"> 4
+                        <br> <label>Выберите статус теста:</label> <br>
+                        <label>(По результатам итогового теста выдаются сертификаты)</label> <br>
+                        <select name="testStatus">
+                            <option>Промежуточный</option>
+                            <option>Итоговый</option>
+                        </select> <br> <br>
                         <br>
                     </div>
 

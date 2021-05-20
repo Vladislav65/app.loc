@@ -97,7 +97,6 @@
                                             echo "<td>" . $item["student_login"] . "</td>";
                                             echo "<td><img class=\"avatar\" src=" . $item["student_avatar"]."></td>";
                                             echo "<td><a href=\"sendEmail" . $group['id'] . ';' . $item['student_id'] . "\">Отправить Email</a></td>";
-                                            echo "<td><a href=\"chatMessage" . $item['student_id'] . "\">Сообщение в системный чат</a></td>";
                                         echo "</tr>";
                                     }
                                 echo "</table> <br>";
