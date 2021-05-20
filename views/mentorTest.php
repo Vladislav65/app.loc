@@ -72,7 +72,7 @@
                 <label>8.Введите желаемый ориентировочный рейтинг ментора:</label> <br>
                 <input type="number" name="rating" min="0" max="100" step="10"> <br> 
         
-                <input class="btn" style="margin-bottom: 10px;" type="submit" name="mentorTest" value="Отправить результаты">
+                <input class="btn" type="submit" name="mentorTest" value="Отправить">
             </form>
         </div>
     </div>

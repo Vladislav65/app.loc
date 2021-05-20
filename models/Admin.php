@@ -36,57 +36,6 @@ class Admin{
         return $statistics;
     }
 
-    public static function topicAdd($topic){
-        $connection = Db::getConnection();
-
-        $topicImgPath = $topic["topicImgPath"];
-        $topicTitle = $topic["topicTitle"];
-        $topicContent = $topic["topic"];
-        $courseId = $topic["courseId"];
-
-        $topicImgArr = explode("/", $topicImgPath);
-        if($topicImgArr[2] == ""){
-            $topicImgArr[2] = "noImg.jpg";
-            $topicImgPath = implode("/", $topicImgArr);
-        }
-
-        if(!move_uploaded_file($_FILES['topicImage']['tmp_name'], $topicImgPath)){
-            $_SESSION['avatarError'] = "Не удалось загрузить фото. Попробуйте загрузить его из профиля";
-        }
-
-        $topicAddQuery = mysqli_query($connection, "INSERT INTO topics (
-                                                                    topic_title,
-                                                                    topic_img,
-                                                                    topic_content,
-                                                                    course_id)
-                                                     VALUES ('$topicTitle',
-                                                                    '$topicImgPath',
-                                                                    '$topicContent',
-                                                                    '$courseId')");
-        
-        return $topicAddResult = "Тема была успешно добавлена";
-    }
-
-    public static function testAnalysis($testId, $answer){   
-        $connection = Db::getConnection();
-
-        $getAnswersQuery = mysqli_query($connection, "SELECT answer1, answer2, answer3 FROM answers
-                                                      WHERE test_id = '$testId'");
-        
-        $corrects = mysqli_fetch_assoc($getAnswersQuery);
-        
-        $cnt = 0;
-        foreach($corrects as $corr){
-            foreach($answer as $ans){
-                if($corr == $ans){
-                    $cnt++;
-                }
-            }
-        }
-
-        return $cnt;
-    }
-
     public static function saveToFile(){
         $statistics = [];
         $statisticsBuf = self::statistics();

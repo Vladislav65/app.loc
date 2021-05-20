@@ -69,4 +69,21 @@ class Tests{
 
         return $test;
     }
+
+    public static function handleTest($studentId, $testId, $test){
+        $wrongs = 0;
+        $result = 0;
+        $connection = Db::getConnection();
+        $getTestQuery = mysqli_query($connection, "SELECT * FROM tests
+                                                            WHERE id = '$testId'");
+
+        $testAssoc = mysqli_fetch_assoc($getTestQuery);
+        $corrects = json_decode($testAssoc['answers'], true);
+        $test = array_values($test);
+
+        $wrongs = sizeof(array_diff_assoc($corrects, $test));
+        $result = 10 - $wrongs;
+
+        return $result;     
+    }
 }

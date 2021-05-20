@@ -9,16 +9,15 @@ class TestsController{
 
     public function actionDoTest($testId){
         $test = Tests::getTest($testId);
+        $studentId = $_SESSION['student']['student_id']; 
 
-        /*echo "<pre>";
-        var_dump($test['content']);
-        echo "</pre>";*/
+        if(isset($_POST['dotest'])){
+            $test = $_POST;
+            unset($test['dotest']);
 
-        
-
-        /*if(isset($_POST['dotest'])){
+            $result = Tests::handleTest($studentId, $testId, $test);
             
-        }*/
+        }
 
         require_once SITE_PATH . DS . "views" . DS . "test.php";
 
@@ -28,6 +27,7 @@ class TestsController{
     public function actionGetResult(){
 
         require_once SITE_PATH . DS . "views" . DS . "testResults.php";
+
         return true;
     }
 
@@ -40,6 +40,7 @@ class TestsController{
         }
 
         require_once SITE_PATH . DS . "views" . DS . "createTest.php";
+
         return true;
     }
 }

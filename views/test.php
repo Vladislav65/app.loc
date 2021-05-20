@@ -17,27 +17,27 @@
             <h4><?php echo $test["title"] ?></h4>
             <form action="#" method="POST">
                 <?php
+                    $var = 0;
                     foreach($test['content'] as $key => $value){
-                ?>
-                    <label><?php  ?></label> <br>
-                    <?php
+                        echo '<label>' . $key . '</label> <br>';
+                    
                         echo $value[0]; 
-                        echo "<input type=\"radio\" name=\"question1\"
-                        value=\"" . $value[0] . "\" > <br>";
+                        echo "<input type=\"radio\" name=\"question{$var}\"
+                        value=\"1\" > <br>";
 
                         echo $value[1]; 
-                        echo "<input type=\"radio\" name=\"question2\"
-                        value=\"" . $value[1] . "\" > <br>";
+                        echo "<input type=\"radio\" name=\"question{$var}\"
+                        value=\"2\" > <br>";
 
                         echo $value[2]; 
-                        echo "<input type=\"radio\" name=\"question3\"
-                        value=\"" . $value[2] . "\" > <br>";
+                        echo "<input type=\"radio\" name=\"question{$var}\"
+                        value=\"3\" > <br>";
 
                         echo $value[3]; 
-                        echo "<input type=\"radio\" name=\"question3\"
-                        value=\"" . $value[3] . "\" > <br>";
-                    ?>
-                <?php
+                        echo "<input type=\"radio\" name=\"question{$var}\"
+                        value=\"4\" > <br>";
+
+                        $var++;
                     }
                 ?>
                 <input class="btn" type="submit" name="dotest">

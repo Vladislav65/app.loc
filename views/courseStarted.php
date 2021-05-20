@@ -18,7 +18,7 @@
         <?php
             foreach($topics as $topic){ 
         ?>
-            <div class="courseTopic">
+            <div class="courseTopic" style="display:flex;">
                 <div><img src="<?php echo $topic["topic_img"] ?>" class="topicImg" style="width:280px; heigth:160px"></div>
                 <div>
                     <h5><?php echo $topic["topic_title"]; ?></h5>

@@ -3,9 +3,9 @@
 }
 
 .sidebar{
-    border: 3px solid blue;
+    border-right: 3px solid blue;
     width: 250px;
-    height: calc(100vh - 120px - 80px);
+    padding: 10px;
 }
 
 .greetingBlock{
@@ -17,8 +17,13 @@
 }
 
 .avatar{
-    width: 250px;
+    width: 200px;
     height: 200px;
+    border-radius: 100px;
+}
+
+.avatar:hover{
+    opacity: 50%;
 }
 
 .headerGreeting{
@@ -27,4 +32,7 @@
 
 .groupBlock{
     border: 3px solid red;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 10px;
 }

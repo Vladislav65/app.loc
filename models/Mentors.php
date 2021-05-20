@@ -545,4 +545,8 @@ class Mentors{
         // после проверок
         return $result;
     }
+
+    public function createSertificate(){
+        
+    }
 }
