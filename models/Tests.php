@@ -89,7 +89,7 @@ class Tests{
         if($testAssoc['status'] == 'Итоговый'){
             if($result >= 7){
                 $sertificateData = self::getDataForSertificate($studentId, $courseId, $result);
-                
+                self::createSertificate($sertificateData);
             }
         }
         exit;
@@ -128,5 +128,11 @@ class Tests{
         $sertificateData['group_name'] = $mentorAssoc['name'];
         
         return $sertificateData;
+    }
+
+    public static function createSertificate($sertificateData){
+        echo "<pre>";
+        var_dump($sertificateData);
+        echo "</pre>";
     }
 }
