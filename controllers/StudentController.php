@@ -11,6 +11,7 @@ include_once SITE_PATH . DS . "models" . DS . "Tests.php";
 class StudentController{
 
     public function actionIndex(){
+
         require_once SITE_PATH . DS . "views" . DS . "student.php";
 
         return true;
@@ -67,6 +68,7 @@ class StudentController{
     }
 
     public function actionOfferResult(){
+        
         require_once SITE_PATH . DS . "views" . DS . "offerResult.php";
 
         return true;

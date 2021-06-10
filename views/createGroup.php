@@ -13,11 +13,15 @@
     <?php include SITE_PATH . DS . "components" . DS . "MentorHeader.php" ?>
         <div class="mainAcc">
             <div class="sidebar"></div>
-
             <div class="account">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
+                        <?php 
+                            if(isset($result)){
+                                echo $result . "<br>";
+                            }  
+                        ?>
                             <form action="#" method="POST">
                             <label>1. Название группы*:</label> <br>
                             <input type="text" name="groupName" required/> <br>
@@ -52,11 +56,6 @@
                             <input class="btn" type="submit" name="createGroup" value="Создать группу">                            
                             </form>                            
                         </div>
-                        <?php 
-                        if(isset($result)){
-                            echo $result;
-                        }  
-                        ?>
                     </div>
                 </div>
             </div>

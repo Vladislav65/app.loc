@@ -13,6 +13,12 @@
 
     <div class="authSection">
         <h3 class="authTitle">Добро пожаловать на страницу авторизации!</h3>
+            <?php
+                if(isset($_SESSION['authErrorStack'])){
+                    echo "<p>" . $_SESSION['authErrorStack'] . "</p>"; 
+                    unset($_SESSION['authErrorStack']);
+                }
+            ?>
         <p class="authDescr">Введите данные для входа</p>
         <div class="authBlock d-flex justify-content-center">
             <form action="#" method="POST">
@@ -20,21 +26,10 @@
                 <input class="inputs" type="text" name="login" required> <br>
                 <label>Введите пароль:</label> <br>
                 <input class="inputs" type="password" name="password" required> <br>
-                <!--<label>Вы:</label> <br>
-                <input type="radio" name="userStatus" value="student" id="userStatus1">
-                <label for="userStatus1">Студент</label>
-                <input type="radio" name="userStatus" value="mentor" id="userStatus2"> 
-                <label for="userStatus2">Ментор</label> <br>-->
                 <input style="margin-top:6%" type="checkbox" name="adminCheck" >
                 <label style="color: black;
                               text-shadow: 1px 1px 2px, 0 0 0.5em red;">Войти как администратор</label> <br>
                 <input class="btn" style="margin-top:2.5%" type="submit" name="auth" value="Войти в аккаунт">
-                <?php
-                    if(isset($_SESSION['authErrorStack'])){
-                       echo "<p>" . $_SESSION['authErrorStack'] . "</p>"; 
-                       unset($_SESSION['authErrorStack']);
-                    }
-                ?>
             </form>
         </div>
     </div>

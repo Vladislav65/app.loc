@@ -43,7 +43,6 @@ class AdminController{
         $topicImgPath = "templates/images/" . $_FILES['topicImage']['name'];
 
         if($topicTitle != NULL && $topic != NULL){
-
             $topic = array(
                 "topicTitle" => $topicTitle,
                 "topicImgPath" => $topicImgPath,
@@ -55,6 +54,7 @@ class AdminController{
         }
 
         require_once SITE_PATH . DS . "views" . DS . "topicAdd.php";
+
         return true;
     }
 
@@ -78,7 +78,6 @@ class AdminController{
         if(isset($_POST['submit'])){
             $firstName = filter_var(trim($_POST['firstName']), FILTER_SANITIZE_STRING);
             $surname = filter_var(trim($_POST['surname']), FILTER_SANITIZE_STRING);
-            //$userStatus = filter_var(trim($_POST['userStatus']), FILTER_SANITIZE_STRING);
             $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_STRING);
             $login = filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
             $password = filter_var(trim($_POST['password']), FILTER_SANITIZE_STRING);
@@ -90,7 +89,6 @@ class AdminController{
         $registerData = array(
             "firstName" => $firstName,
             "surname" => $surname,
-            //"userStatus" => $userStatus,
             "email" => $email,
             "avatarPath" => $path,
             "login" => $login,
@@ -150,8 +148,6 @@ class AdminController{
             "Информационная логистика" => 0,
             "Комплексная логистика" => 0
         ];
-
-        // Разобраться, возможно ли вывести в код диаграммы массив js
 
         foreach($information["addSpecInfo"] as $elem){
             switch($elem){

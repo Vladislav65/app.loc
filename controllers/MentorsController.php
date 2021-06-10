@@ -39,7 +39,6 @@ class MentorsController{
         }
 
         if($sphere == "Экономика"){
-
             $mentorTestArray = array(
                 "sphere" => $sphere,
                 "add" => $eDirections,
@@ -51,7 +50,6 @@ class MentorsController{
                 "rating" => $rating
             );
         }else if($sphere == "Логистика"){
-
             $mentorTestArray = array(
                 "sphere" => $sphere,
                 "add" => $lDirections,
@@ -67,7 +65,6 @@ class MentorsController{
         //после проверок 
         //!! При изменении кол-ва параметров нужно редактировать значение сайзоф
         if(sizeof($mentorTestArray) == 8){
-
             $recommended = Mentors::mentorTest($mentorTestArray);
             MentorsController::mentorRecommended($recommended);
             exit();
@@ -206,7 +203,6 @@ class MentorsController{
 
         if(isset($_POST['updateCourse'])){
             $updateData = $_POST;
-
             $updateResult = Mentors::updateCourse($updateData, $courseId, $oldData['course_img']);
             exit("<meta http-equiv='refresh' content='0; url=manageGroup{$groupId}'>");
         }
@@ -222,6 +218,11 @@ class MentorsController{
         $groupId = $comparedId[1];
         
         $courseTopics = Mentors::manageCourse($courseId, $groupId);
+        $courseTests = Mentors::getTests($courseId, $groupId);
+
+        /*echo "<pre>";
+        var_dump($courseTests);
+        echo "</pre>";*/
 
         require_once SITE_PATH . DS . "views" . DS . "manageCourse.php";
 
@@ -243,18 +244,6 @@ class MentorsController{
             if($flag == true){
                 exit("<meta http-equiv='refresh' content='0; url=manageGroup{$groupId}'>");
             }
-        }
-        
-        require_once SITE_PATH . DS . "views" . DS . "sendMessage.php";
-
-        return true;
-    }
-
-    public function actionChatMessage($studentId){
-        $messageType = 'chat';
-
-        if(isset($_POST['chatBtn'])){
-            echo "chat";
         }
         
         require_once SITE_PATH . DS . "views" . DS . "sendMessage.php";

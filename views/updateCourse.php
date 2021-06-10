@@ -21,8 +21,8 @@
                 <label>Фото курса:</label> <br>
                 <input type="file" name="courseImage"> <br>
                 <label>Категория курса:</label> <br>
-                <input type="radio" name="courseCategory" value="Экономика" > Экономика
-                <input type="radio" name="courseCategory" value="Логистика" > Логистика <br> <br>
+                <input type="radio" name="courseCategory" value="Экономика" required> Экономика
+                <input type="radio" name="courseCategory" value="Логистика" required> Логистика <br> <br>
                 <label>Длительность курса (в часах):</label> <br>
                 <input value="<?php echo $oldData['course_length']; ?>" type="number" name="length" min="0" max="300"> <br>
                 <label>Описание курса:</label> <br>

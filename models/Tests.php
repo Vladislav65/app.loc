@@ -92,7 +92,6 @@ class Tests{
                 self::createSertificate($sertificateData);
             }
         }
-        exit;
 
         return $result;     
     }
@@ -171,5 +170,17 @@ class Tests{
         $pdf->Write(5, "Название учебной группы: " . $sertificateData['group_name']);
 
         $pdf->Output();
+    }
+
+    public static function getTestForUpdate($testId){
+        $connection = Db::getConnection();
+        $testGetQuery = mysqli_query($connection,
+            "SELECT * FROM tests WHERE id = '$testId'");
+        
+        $testForUpdate = mysqli_fetch_assoc($testGetQuery);
+        $testForUpdate['questions'] = json_decode($testForUpdate['questions'], true);
+        $testForUpdate['answers'] = json_decode($testForUpdate['answers'], true);
+
+        return $testForUpdate;
     }
 }

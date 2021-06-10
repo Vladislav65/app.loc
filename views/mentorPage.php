@@ -42,8 +42,6 @@
                             <p>Формат занятий: <?php echo $_SESSION['mentor']['format'] ?></p> <br>
                             <p>Дни занятий: <?php echo $_SESSION['mentor']['days'] ?></p> <br>
                             <p>Ваш возраст: <?php echo $_SESSION['mentor']['age'] ?></p> <br>
-
-                            <p>Ваши студенты: </p> <br>
                         </div>
                     </div>
                 </div>

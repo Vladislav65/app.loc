@@ -22,9 +22,6 @@
                         <div class="mentorBlock">
                             <div class="mentorHeader">
                                 <?php
-                                /*echo "<pre>";
-                                var_dump($mentor);
-                                echo "</pre>";*/
                                 ?>
                                 <img class="mentorImg" src="<?php echo $mentor['mentor_avatar'] ?>"> <br>
                                 <div class="mentorTitle">

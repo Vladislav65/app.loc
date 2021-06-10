@@ -54,5 +54,6 @@ return array(
     "viewGroup([0-9]+)" => "student/viewGroup/$1",
     "userL" => "user/logout",
     "userLA" => "user/logoutAdmin",
-    "learned([0-9]+)" => "student/learned/$1"
+    "learned([0-9]+)" => "student/learned/$1",
+    "updateTest([0-9]+)" => "tests/updateTest/$1"
 );

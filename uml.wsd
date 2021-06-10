@@ -1,0 +1,193 @@
+@startuml APP
+class Db{
+
+    DB_HOST
+    DB_USER
+    DB_PASS
+    DB_NAME
+    public static $connection
+
+    getConnection()
+    __construct()
+    __clone()
+}
+
+class Router{
+    private $routes
+
+    __construct()
+    getURI()
+    run()
+}
+
+class AboutController{
+    actionIndex()
+}
+
+class AdminController{
+    actionIndex()
+    actionUserControl()
+    actionAddStudent()
+    actionGraph()
+    actionSaveFile()
+    actionDeleteUser($userId)
+}
+
+class CoursesController{
+    actionIndex()
+    actionView($courseId)
+    actionStart($courseId)
+    actionCourseAdd()
+}
+
+class MentorsController{
+    actionIndex()
+    actionView($mentorId)
+    actionTest()
+    mentorRecommended($recommended)
+    actionMain()
+    actionCreateGroup()
+    actionViewGroups()
+    actionInviteStudents($groupId)
+    actionSendInvitation($studentId)
+    actionCourseAdd($groupId)
+    actionManageGroup($id)
+    actionDeleteCourse($courseId)
+    actionUpdateCourse($comparedId)
+    actionManageCourse($comparedId)
+    actionSendEmail($comparedId)
+}
+
+class SiteController{
+    actionIndex()
+}
+
+class StudentController{
+    actionIndex()
+    actionMakeOffer($mentorId)
+    actionOfferResult()
+    makeReject($result)
+    makeUnderConsideration($result)
+    makeAccept($result)
+    actionInvitations()
+    actionJoin($id)
+    actionDecline($id)
+    actionGroups()
+    actionViewGroup($groupId)
+    actionLearned($topicId)
+    actionGroupsAvailable()
+    actionEnterGroup($groupId)
+}
+
+class TestsControlle{
+    actionDoTest($comparedId)
+    actionGetResult($result)
+    actionTestAdd($courseId)
+}
+
+class TopicsController{
+    static actionView($id)
+    actionTopicAdd($comparedId)
+    actionUpdateTopic($comparedId)
+}
+
+class UserController{
+    public $mentorId
+
+    actionRegister()
+    actionMentorReg()
+    actionAuth()
+    actionLogout()
+    actionLogoutA()
+}
+
+class Admin{
+    static statistics()
+    static saveToFile()
+    static userControl()
+    static graph()
+    static deleteCourse($id)
+    static function deleteUser($userId)
+}
+
+class Courses{
+    static getCourseItemById($id)
+    static getCoursesList()
+    static getTopics($id)
+    static courseStart($courseId, $studentId)
+    static courseAdd($course)
+    static checkCourseExistance($courseName)
+}
+
+class Mentors{
+    static getMentorById($id)
+    static getRecommendedMentors($idS)
+    static getMentorsList()
+    static mentorTest($mentorTestArray)
+    static checkExperience($expBuf, $expDbBuf)
+    static checkFormat($formatBuf, $formatDbBuf)
+    static checkDays($daysBuf, $daysDbBuf)
+    static checkAge($ageBuf, $ageDb)
+    static checkRating($rateBuf, $rateDbBuf)
+    static createGroup($groupInfo)
+    static getGroups()
+    static getStudents($groupId)
+    static sendInvitation($groupId, $studentId)
+    static insertCourseToGroup($groupId)
+    static getGroupById($id)
+    static deleteCourse($comparedId)
+    static manageCourse($courseId, $groupId)
+    static getCourseForUpdate($courseId)
+    static updateCourse($updateData, $courseId, $courseImg)
+    static sendEmail($studentId, $mentorId, $email)
+}
+
+class AnalyzeOffer{
+    static analyze($offerArray, $mentorId)
+    static makeOffer($offerArray, $student, $mentor)
+    static makeReject($rejectedOffers)
+    static checkDays($offerDays, $mentorDays)
+    static checkFormat($offerFormat, $mentorFormat)
+}
+
+class Student{
+    static getInvitations($studentId)
+    static join($studentId, $id)
+    static decline($studentId, $id)
+    static getGroups($studentId)
+    static topicLearned($topicId, $studentId)
+    static getAvailableGroups($studentId)
+    static enterGroup($studentId, $groupId)
+}
+
+class Tests{
+    public static $groupId;
+
+    static getTests($courseId)
+    static createTest($test, $courseId, $mentorId)
+    static getTest($testId)
+    static handleTest($studentId, $courseId, $testId, $test)
+    static getDataForSertificate($studentId, $courseId, $result)
+    static createSertificate($sertificateData)
+}
+
+class Topics{
+    static getTopic($id)
+    static topicAdd($topic, $courseId, $mentorId)    
+    static getCourseTopics($topicsIds)
+    static updateTopic($updatedTopic, $topicId, $mentorId, $topicImg)
+    static isLearned($topicId, $studentId)
+}
+
+class User{
+    static register($registerBuf)
+    static mentorRegister($registerData)
+    static addMentorReg($addRegData)
+    static auth($log, $pass)
+    static mentorAuth($login, $password)
+    static adminControl($login, $password)
+    static function isLogged()
+    static function adminIsLogged()
+}
+
+@enduml

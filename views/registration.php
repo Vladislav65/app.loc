@@ -14,6 +14,17 @@
     <div class="regSection">
         <h3>Добро пожаловать на страницу регистрации!</h3>
         <p class="regDescr">Символом * отмечены поля, обязательные для заполнения</p>
+        <?php 
+            if(!(empty($_SESSION['regErrorStack']))){
+                    
+                foreach($_SESSION['regErrorStack'] as $error){
+                    echo "<p>" . $error . "</p> <br>";        
+                }
+                unset($_SESSION['regErrorStack']);
+            }else if(empty($_SESSION['regErrorStack']) && isset($_POST['submit'])){
+                echo "<p>Вы были успешно зарегистрированы</p>";
+            }
+        ?>
         <div class="regBlock d-flex justify-content-center">
             <form class="regForm" action="#" method="post" enctype ="multipart/form-data">
                 <label>Вы регистрируетесь как*:</label> <br>
@@ -34,19 +45,6 @@
                 <label>Подтвердите пароль*:</label> <br>
                 <input class="inputs" type="password" name="confirmPassword" required> <br>
                 <input class="btn" type="submit" name="submit" value="Зарегистрироваться">
-                <?php 
-                if(isset($_SESSION['regErrorStack'])){
-                    
-                    foreach($_SESSION['regErrorStack'] as $error){
-                        echo "<p>" . $error . "</p> <br>";        
-                    }
-                    unset($_SESSION['regErrorStack']);
-                }
-
-                /*if($_SESSION['regErrorStack'] == NULL){
-                    echo "<p> Вы были успешно зарегистрированы </p>";
-                }*/
-                ?>
             </form>
         </div>
     </div>

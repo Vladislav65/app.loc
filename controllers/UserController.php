@@ -9,9 +9,9 @@ class UserController{
     public $mentorId;
 
     public function actionRegister(){
-        $_SESSION['regErrorStack'] = [];
-
         if(isset($_POST['submit'])){
+            $flag = true;
+            $_SESSION['regErrorStack'] = [];
             $status = $_POST['status'];
             $firstName = filter_var(trim($_POST['firstName']), FILTER_SANITIZE_STRING);
             $surname = filter_var(trim($_POST['surname']), FILTER_SANITIZE_STRING);
@@ -19,55 +19,55 @@ class UserController{
             $login = filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
             $password = filter_var(trim($_POST['password']), FILTER_SANITIZE_STRING);
             $confirmPassword = filter_var(trim($_POST['confirmPassword']), FILTER_SANITIZE_STRING);
-        }
-
-        $type = explode('/', $_FILES['avatar']['type']);
-        $extension = $type[1];
-
-        $path = "templates/images/avatars/" . $login . '.' . $extension;
         
-        $registerData = array(
-            "firstName" => $firstName,
-            "surname" => $surname,
-            "email" => $email,
-            "avatarPath" => $path,
-            "login" => $login,
-            "password" => $password,
-        );
+            $type = explode('/', $_FILES['avatar']['type']);
+            $extension = $type[1];
 
-        if($registerData['firstName'] != NULL &&
-           $registerData['surname'] != NULL &&
-           $registerData['login'] != NULL &&
-           $registerData['password'] != NULL){
+            $path = "templates/images/avatars/" . $login . '.' . $extension;
+            
+            $registerData = array(
+                "firstName" => $firstName,
+                "surname" => $surname,
+                "email" => $email,
+                "avatarPath" => $path,
+                "login" => $login,
+                "password" => $password,
+            );
 
-            if(mb_strlen($login) < 3){
-                $_SESSION['regErrorStack'][] = "Недопустимая длина логина (< 3 символов)";
-            }
-    
-            if(mb_strlen($password) < 3){
-                $_SESSION['regErrorStack'][] = "Недопустимая длина пароля (< 3 символов)";
-            }
-    
-            if($login == $password){
-                $_SESSION['regErrorStack'][] = "Ошибка! Логин и пароль совпадают";
-            }
-    
-            if($password != $confirmPassword){
-                $_SESSION['regErrorStack'][] = "Ошибка! Введённые пароли не совпадают";
-            }
+            if($registerData['firstName'] != NULL &&
+            $registerData['surname'] != NULL &&
+            $registerData['login'] != NULL &&
+            $registerData['password'] != NULL){
 
-            if($_SESSION['regErrorStack'] == NULL){
-                if($status == 'student'){
-                    $flag = User::register($registerData);
-                }else{
-                    $flag = User::mentorRegister($registerData);
-                    $this->mentorId = $flag;
-                    exit("<meta http-equiv='refresh' content='0; url= userMR'>");
+                if(mb_strlen($login) < 3){
+                    $_SESSION['regErrorStack'][] = "Недопустимая длина логина (< 3 символов)";
                 }
-            }
+        
+                if(mb_strlen($password) < 3){
+                    $_SESSION['regErrorStack'][] = "Недопустимая длина пароля (< 3 символов)";
+                }
+        
+                if($login == $password){
+                    $_SESSION['regErrorStack'][] = "Ошибка! Логин и пароль совпадают";
+                }
+        
+                if($password != $confirmPassword){
+                    $_SESSION['regErrorStack'][] = "Ошибка! Введённые пароли не совпадают";
+                }
 
-            if($flag == false){
-                $_SESSION['regErrorStack'][] = "Пользователь с таким логином уже зарегистрирован";
+                if($_SESSION['regErrorStack'] == NULL){
+                    if($status == 'student'){
+                        $flag = User::register($registerData);
+                    }else{
+                        $flag = User::mentorRegister($registerData);
+                        $this->mentorId = $flag;
+                        exit("<meta http-equiv='refresh' content='0; url= userMR'>");
+                    }
+                }
+
+                if($flag === false){
+                    $_SESSION['regErrorStack'][] = "Пользователь с таким логином уже зарегистрирован";
+                }
             }
         }
 
@@ -115,14 +115,11 @@ class UserController{
                 $authFlag = User::auth($login, $password);
 
                 if($authFlag == false){
-                    // exit ниже можно не писать
                     exit("<meta http-equiv='refresh' content='0; url= userA'>");
                 }else if($authFlag === 'mentor_true'){
                     exit("<meta http-equiv='refresh' content='0; url= mentorM'>");
                 }else if($authFlag === true){
-                    // Разобраться с выходом
                     exit("<meta http-equiv='refresh' content='0; url= student'>");
-                    //header("Location: student");
                 }
             }
         }

@@ -24,9 +24,9 @@
     <h3>Добавление новой темы</h3> 
         <form action="#" method="post" enctype="multipart/form-data">
             <label>Введите название темы:</label> <br>
-            <input type="text" name="topicTitle"> <br> <br>
+            <input type="text" name="topicTitle" required> <br> <br>
             <label>Добавьте фото темы:</label> <br>
-            <input type="file" name="topicImage"> <br> <br>
+            <input type="file" name="topicImage" required> <br> <br>
             <label>Вместо написания статьи Вы можете прикрепить файл с темой:</label> <br>
             <input type="file" name="file"> <br> <br>
             <label>Напечатайте содержимое темы:</label> <br>
@@ -35,7 +35,7 @@
         </form>
     </div>
     <?php
-            echo $topicAddResult;
+        echo $topicAddResult;
     ?>
 
     <?php include SITE_PATH . DS . "components" . DS . "Footer.php" ?>    

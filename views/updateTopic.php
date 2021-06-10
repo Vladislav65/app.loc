@@ -27,13 +27,15 @@
             <input type="text" name="topicTitle" value="<?php echo $topic['topic_title'] ?>"> <br> <br>
             <label>Обновить фото темы:</label> <br>
             <input type="file" name="topicImage"> <br> <br>
+            <label>Прикрепить файл с темой:</label> <br>
+            <input type="file" name="file"> <br> <br>
             <label>Обновить содержимое темы:</label> <br>
             <textarea id="addTopic" name="topic" rows="20" cols="65" style="resize: none; text-align: center;"><?php echo $topic['topic_content']; ?></textarea><br>
             <input class="btn" type="submit" name="updateTopic" value="Обновить тему"> 
         </form>
     </div>
     <?php
-            echo $topicAddResult;
+        echo $topicAddResult;
     ?>
 
     <?php include SITE_PATH . DS . "components" . DS . "Footer.php" ?>    

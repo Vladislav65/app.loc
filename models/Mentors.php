@@ -546,7 +546,16 @@ class Mentors{
         return $result;
     }
 
-    public function createSertificate(){
+    public static function getTests($courseId, $groupId){
+        $courseTests = [];
+        $connection = Db::getConnection();
+        $testsGetQuery = mysqli_query($connection,
+            "SELECT * FROM tests WHERE course_id = '$courseId'");
         
+        while($courseTestsAssoc = mysqli_fetch_assoc($testsGetQuery)){
+            $courseTests[] = $courseTestsAssoc;
+        }
+
+        return $courseTests;
     }
 }

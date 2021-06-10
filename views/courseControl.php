@@ -27,12 +27,12 @@
                                     <h4><?php echo $course["course_name"]; ?></h4>
                                     <p>Категория курса: <?php echo $course["course_category"]; ?></p>
                                     <p>Продолжительность: <?php echo $course["course_length"]; ?> часов</p>
+                                    <p><?php echo $course["course_descr"]; ?></p>
                                 </div>
                             </div>
-                            <p><?php echo $course["course_descr"]; ?></p> 
-
+                            
                             <?php if(User::adminIsLogged() == true){ ?>
-                            <a href="courseAdmin<?php echo $course["course_id"]; ?>">Подробнее</a>
+                            <!--<a href="courseAdmin  echo $course["course_id"]; <?php?>">Подробнее</a>-->
                             <?php
                             }
                             ?>

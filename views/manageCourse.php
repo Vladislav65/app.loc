@@ -23,7 +23,7 @@
                 <div><img src="<?php echo $topic["topic_img"] ?>" class="topicImg" style="width:280px; heigth:160px"></div>
                 <div>
                     <h5><?php echo $topic["topic_title"]; ?></h5>
-                    <p><a href="updateTopic<?php echo $topic['topic_id'] . ";" . $_SESSION['mentor']['mentor_id'] . ";" . $courseId?>">Просмотреть тему</a></p>
+                    <p><a href="updateTopic<?php echo $topic['topic_id'] . ";" . $_SESSION['mentor']['mentor_id'] . ";" . $courseId?>">Просмотреть тему</a></p> 
                 </div>
             </div>
         <?php 
@@ -31,22 +31,9 @@
         ?>
         </div>
 
-        <h4 style="margin-top: 50px;">Тесты курса:</h4>
-        <p><a href="testAdd<?php echo $courseId ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Добавить тест</p>
-        <div class="courseTests">
-        <?php
-            foreach($tests as $test){
-        ?>
-            <div class="courseTest">
-                <div>
-                    <h5><?php echo $test["test_title"]; ?></h5>
-                    <p><?php echo $test["test_id"]; ?></p>
-                </div>
-            </div>
-        <?php
-            }
-        ?>
+        <!--<h4 style="margin-top: 50px;">Тесты курса:</h4> -->
         </div>     
+        <br><p style="text-align:center"><a href="testAdd<?php echo $courseId ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Добавить тест</p>
         <p style="text-align: center; margin-top:30px"><a href="deleteCourse<?php echo $course["course_id"] ?>"><img class="deleteIcon" src="templates/images/deleteIcon.jpg" /></a> Удалить курс</p>    
     </div>
 

@@ -26,7 +26,6 @@
         <p>Формат занятий: <?php echo $mentor["format"]; ?> </p>
         <p>Дни занятий: <?php echo $mentor["days"]; ?> </p>
         <p>Возраст: <?php echo $mentor["age"]; ?> лет</p>
-        <p>О себе: <?php echo $mentor["about"]; ?> </p>
         <p><a href="makeOffer<?php echo $mentor["mentor_id"] ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Оставить заявку на запись</p>
     </div>
 

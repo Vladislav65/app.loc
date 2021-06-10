@@ -15,11 +15,6 @@
 
     <div class="courseMaterials">
     <h4>Темы курса:</h4>
-    <?php
-    /*echo "<pre>";
-    var_dump($topics);
-    echo "</pre>";*/
-    ?>
     <p><a href="topicAdd<?php echo $course["course_id"] ?>"><img class="topicPlusIcon" src="templates/images/topicPlusIcon.jpg" /></a> Добавить тему</p>
         <div class="courseTopics">
         <?php foreach($topics as $topic){ ?>

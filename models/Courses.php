@@ -3,7 +3,6 @@
 class Courses{
 
     public static function getCourseItemById($id){
-
         $connection = Db::getConnection();
         $courseQuery = mysqli_query($connection, "SELECT * FROM courses
                                                   WHERE course_id = '$id'");
@@ -14,7 +13,6 @@ class Courses{
     }   
     
     public static function getCoursesList(){
-
         $connection = Db::getConnection();
 
         $coursesList = [];
@@ -68,7 +66,7 @@ class Courses{
         $courseCategory = $course["courseCategory"];
         $courseLength = $course["courseLength"];
         $courseDescr = $course["courseDescr"];
-
+        
         $lastCourseGetQuery = mysqli_query($connection,
             "SELECT course_id FROM courses ORDER BY course_id DESC");
         $lastCourseAssoc = mysqli_fetch_assoc($lastCourseGetQuery);

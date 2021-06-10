@@ -275,7 +275,6 @@ class User{
     }
 
     public static function adminIsLogged(){
-        
         if(isset($_SESSION['admin'])){
             return true;
         }else{

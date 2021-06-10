@@ -47,4 +47,12 @@ class TestsController{
 
         return true;
     }
+
+    /*public function actionUpdateTest($testId){
+        $testForUpdate = Tests::getTestForUpdate($testId);
+
+        require_once SITE_PATH . DS . "views" . DS . "updateTest.php";
+
+        return true;
+    }*/
 }
